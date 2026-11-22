@@ -1251,9 +1251,6 @@
         <button class="dare-primary-btn" id="btn-complete-dare">
           💋 我認輸！心服口服執行完畢
         </button>
-        <button class="dare-alt-btn" id="btn-strip-alternative">
-          🫣 太害羞了！改為褪去一件裝備代替
-        </button>
       </div>
     </div>
   </div>
@@ -1528,6 +1525,7 @@
                 <br>• <strong>100 Fichas:</strong> Contacto Candente (mostrar clavícula, caricias por la ropa).
                 <br>• <strong>250 Fichas:</strong> Medianoche Ardiente (audios eróticos, confesar fantasías íntimas).
                 <br>• <strong>500 Fichas:</strong> Clímax Total (desnudez forzosa, control remoto por videollamada).
+                <br>• <strong>🔥 Golpe del Destino:</strong> En cualquier ronda hay una baja probabilidad (~12%) de que el destino obligue al perdedor a despojarse de una prenda ante la cámara.
               </p>
             </div>
           </div>
@@ -1564,6 +1562,7 @@
               <br>• <strong>下注 100 (半熟)：</strong>解扣微露鎖骨、隔衣撫摸特寫展示。
               <br>• <strong>下注 250 (午夜)：</strong>閉眼語音遙控愛撫、私密羞羞幻想告白。
               <br>• <strong>下注 500 (豪賭)：</strong>強制貼身褪裳、1 分鐘視訊絕對口述遙控！
+              <br>• <strong>🔥 命運突襲：</strong>任何一局輸家都有低機率（約 12%）觸發強制褪裳，必須在鏡頭前脫下一件裝備！
             </p>
           </div>
         </div>
@@ -1590,14 +1589,14 @@
         return `
           <p><strong style="color: var(--gold-light);">1. Dinámica del 21:</strong> El objetivo es sumar un valor cercano a 21 sin pasarse. Quien obtenga mayor puntuación gana la ronda.</p>
           <p><strong style="color: var(--gold-light);">2. Clímax Blackjack:</strong> Quien saque 21 natural en las dos primeras cartas activa el "Poder Absoluto", pudiendo dar una orden directa a su pareja.</p>
-          <p><strong style="color: var(--gold-light);">3. Prendas y Retos:</strong> El perdedor puede redimirse quitándose una capa de ropa si el reto le parece demasiado atrevido.</p>
+          <p><strong style="color: var(--gold-light);">3. Despojo de Prendas:</strong> Ya no es una opción de escape voluntaria, ¡sino un evento sorpresa con baja probabilidad en cada ronda!</p>
           <p><strong style="color: var(--gold-light);">4. Interacción Sensual:</strong> Envía pulsos de latidos y frases ardientes para intensificar la tensión durante la partida.</p>
         `;
       }
       return `
         <p><strong style="color: var(--gold-light);">1. 基本博弈：</strong>雙方比誰的牌面總和最接近 21 點且不爆牌（J, Q, K 為 10 點，A 可算 1 或 11 點）。</p>
         <p><strong style="color: var(--gold-light);">2. 黑傑克爆擊 (Blackjack)：</strong>起始兩張直接 21 點觸發王牌爆擊！贏家享有「絕對命令權」，可要求輸家做任何想做的事。</p>
-        <p><strong style="color: var(--gold-light);">3. 褪裳與懲罰機制：</strong>每局落敗者，可在「執行火辣指令」或「褪下一件裝備（外衣 -> 上著 -> 下著 -> 貼身）」中二選一！</p>
+        <p><strong style="color: var(--gold-light);">3. 褪裳機制：</strong>褪去裝備不再是自選避難所，而是每局都有低機率驚喜觸發的【命運突襲】！</p>
         <p><strong style="color: var(--gold-light);">4. 遠端心跳互動：</strong>即使相隔兩地，點擊「💓 傳送心跳」按鈕，對方的畫面會劇烈震動並響起真實心跳聲；搭配視訊或通話體驗最佳！</p>
       `;
     }
@@ -2207,6 +2206,19 @@
         function getDareForBet(bet, isClimax) {
       const daresObj = DARES[state.lang];
       if (isClimax) return daresObj.climax;
+
+      // 每次遊戲都有低機率抽到「褪去一件衣物裝備」(約 12% 驚喜機率，比常規 4 個各 25% 的選項更低)
+      const isStripSurprise = Math.random() < 0.12;
+      if (isStripSurprise) {
+        return {
+          isStrip: true,
+          badge: state.lang === 'es' ? "🔥 GOLPE DEL DESTINO・DESPOJO" : "🔥 命運突襲・幸運女神的惡作劇",
+          text: state.lang === 'es'
+            ? "【¡Evento Sorpresa: Despojarse de una Prenda!】¡La temperatura sube de golpe! El destino ha hablado: el perdedor debe despojarse lentamente de su prenda más visible ante la cámara y mostrársela a su pareja."
+            : "【命運突襲：褪去一件裝備！】幸運女神的性感惡作劇降臨！輸家必須在視訊鏡頭前，緩慢且撩人地褪去當前最外層的一件衣物裝備，並在鏡頭前展示給對方！"
+        };
+      }
+
       let pool;
       if (bet <= 50) pool = daresObj.tier50;
       else if (bet <= 100) pool = daresObj.tier100;
@@ -2306,25 +2318,24 @@
       const dict = I18N[state.lang];
       const dareObj = getDareForBet(state.currentBet, isClimax);
 
+      state.pendingStrip = !!dareObj.isStrip;
+      state.pendingStripIsMe = iAmLoser;
+
       const modal = document.getElementById('dare-modal');
       const badge = document.getElementById('modal-badge');
       const title = document.getElementById('modal-title');
       const content = document.getElementById('modal-content');
       const btnComplete = document.getElementById('btn-complete-dare');
-      const btnStrip = document.getElementById('btn-strip-alternative');
 
       badge.textContent = dareObj.badge;
       if (iAmLoser) {
         title.textContent = dict.dareModalTitleLose;
         content.textContent = dareObj.text;
         btnComplete.textContent = dict.btnCompleteDareLose;
-        btnStrip.textContent = dict.btnStripAlternative;
-        btnStrip.style.display = 'block';
       } else {
         title.textContent = dict.dareModalTitleWin.replace('%name%', state.oppNickname);
         content.textContent = dict.dareModalContentWinPrefix + dareObj.text + dict.dareModalContentWinSuffix;
         btnComplete.textContent = dict.btnCompleteDareWin;
-        btnStrip.style.display = 'none';
       }
 
       modal.style.display = 'flex';
@@ -2666,12 +2677,10 @@
       document.getElementById('btn-complete-dare').addEventListener('click', () => {
         dareModal.style.display = 'none';
         sound.playWin();
-        resetForNextBet();
-      });
-
-      document.getElementById('btn-strip-alternative').addEventListener('click', () => {
-        dareModal.style.display = 'none';
-        stripOneLayer(true);
+        if (state.pendingStrip) {
+          stripOneLayer(state.pendingStripIsMe);
+          state.pendingStrip = false;
+        }
         resetForNextBet();
       });
 
