@@ -1113,7 +1113,7 @@
           <div class="player-stats">
             <div class="stat-chip">
               <span>🪙</span>
-              <span id="opp-chips">1000</span>
+              <span id="opp-chips">1500</span>
             </div>
             <div class="stat-hand-score" id="opp-score">
               ? 點
@@ -1197,7 +1197,7 @@
           <div class="player-stats">
             <div class="stat-chip">
               <span>🪙</span>
-              <span id="my-chips">1000</span>
+              <span id="my-chips">1500</span>
             </div>
             <div class="stat-hand-score" id="my-score">
               0 點
@@ -1216,6 +1216,30 @@
   </main>
 
   <!-- 3. MODAL: SPICY DARE / STRIP PUNISHMENT -->
+  
+  <!-- 3.5 MODAL: BANKRUPTCY CLIMAX (終極破產・準備壞壞大典) -->
+  <div class="modal-overlay" id="bankruptcy-modal">
+    <div class="dare-card-modal" style="max-width: 540px; border-color: var(--scarlet); box-shadow: 0 0 50px rgba(255, 42, 109, 0.6), 0 20px 60px rgba(0,0,0,0.9);">
+      <span class="dare-badge" style="background: rgba(255, 42, 109, 0.35); color: #fff; border-color: #ff2a6d; font-size: 13px; animation: pulse-heart 1.5s infinite;" id="bankrupt-badge">
+        🚨 破產臣服警報・準備壞壞了！
+      </span>
+      <h2 class="dare-title" id="bankrupt-title" style="font-size: 26px; color: #ff8fab;">
+        💔 籌碼完全見底！今晚全面淪陷
+      </h2>
+      <div class="dare-content" id="bankrupt-content" style="font-size: 15px; border-left-color: #ff2a6d; background: rgba(255, 42, 109, 0.08);">
+        <!-- Injected by JS -->
+      </div>
+      <div class="dare-actions">
+        <button class="dare-primary-btn" id="btn-accept-bankrupt" style="font-size: 16px; padding: 15px;">
+          💋 我甘願認輸臣服！立即執行終極壞壞
+        </button>
+        <button class="dare-alt-btn" id="btn-restart-game">
+          🔄 重新注入 1500 籌碼再戰一輪
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-overlay" id="dare-modal">
     <div class="dare-card-modal">
       <span class="dare-badge" id="modal-badge">🔥 午夜心跳懲罰</span>
@@ -1420,36 +1444,68 @@
       }
     };
 
-    /* SPICY DARES IN BOTH LANGUAGES */
+        /* SPICY DARES CATEGORIZED BY BET TIER (100% REMOTE FRIENDLY) */
     const DARES = {
-      zh: [
-        { badge: "💋 微糖挑逗", text: "用鼻尖輕蹭對方的臉頰與耳垂 15 秒，感受彼此的呼吸頻率。" },
-        { badge: "💋 微糖挑逗", text: "深情注視對方的眼睛 20 秒，期間雙方都不准說話或笑場，先移開視線的人要被親一口。" },
-        { badge: "💋 微糖挑逗", text: "用最溫柔、沙啞且撩人的氣音，在視訊電話中或耳邊輕喊對方的名字 3 次。" },
-        { badge: "🔥 半熟心跳", text: "隔著衣服輕輕撫摸對方的腰部、鎖骨或大腿內側 30 秒，動作要極致緩慢。" },
-        { badge: "🔥 半熟心跳", text: "親吻對方的鎖骨或頸側，留下微溫的印記，並輕咬一下耳垂。" },
-        { badge: "🔥 半熟心跳", text: "解開自己或對方的一顆鈕扣，或者拉下一點肩帶，保持這個姿勢進行下一局。" },
-        { badge: "🔥 半熟心跳", text: "任由贏家指定吻一處非臉部的部位（例如：手腕內側、掌心、肩膀）。" },
-        { badge: "🌙 午夜狂歡", text: "閉上雙眼或戴上眼罩，任由對方用手指與嘴唇探索撫摸 1 分鐘，期間只能發出呼吸聲。" },
-        { badge: "🌙 午夜狂歡", text: "坐在對方腿上或貼近鏡頭，進行一場長達 30 秒的深情熱吻。" },
-        { badge: "🌙 午夜狂歡", text: "褪去一件貼身衣物，或者讓對方替你褪下一件裝備。" },
-        { badge: "🌙 午夜狂歡", text: "在對方耳畔說出一個你心底最害羞、一直很想跟對方嘗試的私密幻想。" },
-        { badge: "👑 黑傑克王牌特權", text: "【絕對命令權】贏家享有完全主導權！贏家可直接口頭指定輸家做任何一件事，輸家無條件順從。" }
-      ],
-      es: [
-        { badge: "💋 Caricia Suave", text: "Roza con la punta de tu nariz su mejilla y lóbulo de la oreja durante 15 segundos sintiendo el calor de su respiración." },
-        { badge: "💋 Mirada Profunda", text: "Mírense fijamente a los ojos durante 20 segundos sin hablar ni sonreír. Quien desvíe la mirada primero debe dar un beso apasionado." },
-        { badge: "💋 Susurro Íntimo", text: "Susurra su nombre 3 veces con tu voz más seductora, lenta y ronca al oído o a través de la videollamada." },
-        { badge: "🔥 Contacto Candente", text: "Acaricia lentamente la cintura, la clavícula o la parte interna del muslo durante 30 segundos por encima de la ropa." },
-        { badge: "🔥 Marca de Pasión", text: "Besa su cuello o clavícula dejando un roce tibio y muerde suavemente su oreja con delicadeza." },
-        { badge: "🔥 Desabrochar", text: "Desabrocha un botón de tu camisa o baja el tirante de tu prenda y juega la siguiente ronda así." },
-        { badge: "🔥 Beso Secreto", text: "Deja que el ganador/a elija una zona de tu cuerpo que no sea la cara (como la muñeca, hombro o cuello) para darle un beso tierno." },
-        { badge: "🌙 Medianoche Erótica", text: "Cierra los ojos o déjate vendar; tu pareja podrá recorrer tus labios y cuello con sus caricias durante 1 minuto completo." },
-        { badge: "🌙 Beso Ardiente", text: "Acércate a la cámara o siéntate en su regazo y compartan un beso apasionado de 30 segundos ininterrumpidos." },
-        { badge: "🌙 Quitar Prenda", text: "Quítate una prenda de vestir o deja que tu pareja elija cuál debes quitarte ahora mismo." },
-        { badge: "🌙 Confesión Prohibida", text: "Susúrrale al oído una fantasía íntima y secreta que siempre hayas tenido deseos de realizar juntos." },
-        { badge: "👑 Clímax Blackjack (Orden Absoluta)", text: "¡PODER ABSOLUTO! El ganador tiene derecho a exigir cualquier mandato o deseo personal y el perdedor debe obedecer sin objeción." }
-      ]
+      zh: {
+        tier50: [
+          { badge: "💋 微糖輕挑 (下注50)", text: "【眼神挑逗】貼近視訊鏡頭，用最深情且挑逗的眼神注視鏡頭 20 秒，期間輕輕抿嘴或咬唇不能笑場。" },
+          { badge: "💋 微糖輕挑 (下注50)", text: "【耳邊氣音】貼近手機麥克風，用微喘的性感氣音在耳邊輕喊 3 次對方的名字與一句「今晚好想你」。" },
+          { badge: "💋 微糖輕挑 (下注50)", text: "【特寫飛吻】將鏡頭拉近至嘴唇特寫，給對方一個極度溫柔深情的長飛吻，並發出親吻聲。" },
+          { badge: "💋 微糖輕挑 (下注50)", text: "【隔空肌膚印記】在鏡頭前親吻自己的手腕內側 3 下，並把手掌貼在螢幕前送給對方。" }
+        ],
+        tier100: [
+          { badge: "🔥 半熟心跳 (下注100)", text: "【鎖骨微露】調整視訊角度，在鏡頭前緩慢拉下衣領或解開一顆鈕扣，露出鎖骨與肩膀維持下一輪。" },
+          { badge: "🔥 半熟心跳 (下注100)", text: "【指尖漫遊】隔著衣服，用指尖緩慢撫摸自己的鎖骨、胸前至腰間，全程雙眼注視著鏡頭裡的對方。" },
+          { badge: "🔥 半熟心跳 (下注100)", text: "【性感小酌】拿一杯水或飲品，在鏡頭前緩慢喝下一口，並用舌尖輕舔嘴唇上的水滴。" },
+          { badge: "🔥 半熟心跳 (下注100)", text: "【鏡頭指定部位】任由贏家指定視訊鏡頭要對準你的哪個部位（如嘴唇、鎖骨、腰部曲線）特寫展示 20 秒。" }
+        ],
+        tier250: [
+          { badge: "🌙 午夜狂歡 (下注250)", text: "【閉眼語音遙控】閉上雙眼戴上耳機，聽對方在語音中口述指令愛撫你，期間只能用微弱的呼吸或輕喘回應。" },
+          { badge: "🌙 午夜狂歡 (下注250)", text: "【慢動作褪裳】在鏡頭前緩慢褪下一件衣物裝備（外套、襪子或外層），並在鏡頭前展示給對方看。" },
+          { badge: "🌙 午夜狂歡 (下注250)", text: "【私密幻想告白】貼近視訊鏡頭，輕聲說出一個你現在最想對另一半做的害羞私密幻想或姿勢。" },
+          { badge: "🌙 午夜狂歡 (下注250)", text: "【衣內探索】將手伸進衣服內側觸碰自己的肌膚 30 秒，同時看著對方的眼睛發出輕輕的嘆息。" }
+        ],
+        tier500: [
+          { badge: "👑 終極豪賭 (下注500)", text: "【強制貼身褪裳】輸家必須在鏡頭前脫去一件當前最貼身的衣物，並維持當前姿態繼續遊戲！" },
+          { badge: "👑 終極豪賭 (下注500)", text: "【遠端視訊遙控】贏家享有 1 分鐘語音遙控權，輸家必須依循贏家口述指令做出撫摸或視訊姿勢！" },
+          { badge: "👑 終極豪賭 (下注500)", text: "【私密特寫賞析】將鏡頭移至私密邊緣或腰臀曲線特寫，讓贏家在螢幕前靜靜欣賞 30 秒。" },
+          { badge: "👑 終極豪賭 (下注500)", text: "【絕對服從告白】用最嬌媚/性感的聲音對著麥克風說：「今晚我是你的，請隨意處置我」。" }
+        ],
+        climax: {
+          badge: "👑 BLACKJACK 王牌爆擊",
+          text: "【王牌絕對命令權】恭喜起手 21 點！贏家可直接在視訊中對輸家發出任意一道口頭命令，輸家必須無條件遵從！"
+        }
+      },
+      es: {
+        tier50: [
+          { badge: "💋 Caricia Suave (Apuesta 50)", text: "【Mirada Seductora】Acércate a la cámara y sostén una mirada fija y ardiente durante 20 segundos sin reírte, mordiéndote levemente el labio." },
+          { badge: "💋 Caricia Suave (Apuesta 50)", text: "【Susurro al Oído】Pégate al micrófono y susurra 3 veces su nombre con respiración pausada y un sensual 'Te deseo esta noche'." },
+          { badge: "💋 Caricia Suave (Apuesta 50)", text: "【Beso en Primer Plano】Acerca tus labios a la pantalla y manda un beso lento, sonoro y apasionado para tu pareja." },
+          { badge: "💋 Caricia Suave (Apuesta 50)", text: "【Roce Íntimo】Besa la parte interna de tu muñeca 3 veces mirando a la cámara y coloca tu palma frente a la pantalla." }
+        ],
+        tier100: [
+          { badge: "🔥 Contacto Candente (Apuesta 100)", text: "【Clavícula al Descubierto】Ajusta la cámara y baja lentamente el cuello de tu prenda o desabrocha un botón, mostrando la clavícula y hombro." },
+          { badge: "🔥 Contacto Candente (Apuesta 100)", text: "【Recorrido Sensual】Acaricia lentamente con tus dedos tu cuello, clavícula y cintura por encima de la ropa mirando fijamente a tu pareja." },
+          { badge: "🔥 Contacto Candente (Apuesta 100)", text: "【Trago Seductor】Toma un sorbo de agua lentamente ante la cámara y humedece tus labios con la lengua de forma provocativa." },
+          { badge: "🔥 Contacto Candente (Apuesta 100)", text: "【Primer Plano a Elección】Deja que el ganador/a elija qué parte enfocar ante la cámara (labios, cuello, cintura, curvas) durante 20 segundos." }
+        ],
+        tier250: [
+          { badge: "🌙 Medianoche Ardiente (Apuesta 250)", text: "【Audio Guía Íntima】Cierra los ojos con auriculares: tu pareja te dictará al oído caricias que debes hacerte, respondiendo solo con suspiros." },
+          { badge: "🌙 Medianoche Ardiente (Apuesta 250)", text: "【Despojo Sensual】Quítate una prenda ante la cámara de manera lenta y sensual, mostrándosela a tu pareja." },
+          { badge: "🌙 Medianoche Ardiente (Apuesta 250)", text: "【Fantasía Prohibida】Acércate al micrófono y confiesa al oído una fantasía erótica ardiente que quieras cumplir en cuanto se vean." },
+          { badge: "🌙 Medianoche Ardiente (Apuesta 250)", text: "【Mano Bajo la Ropa】Introduce tu mano por debajo de tu ropa acariciando tu propia piel durante 30 segundos sin apartar la mirada." }
+        ],
+        tier500: [
+          { badge: "👑 Clímax Absoluto (Apuesta 500)", text: "【Desnudez Forzosa】¡El perdedor debe quitarse su prenda más íntima visible ante la cámara y continuar la partida así!" },
+          { badge: "👑 Clímax Absoluto (Apuesta 500)", text: "【Control Remoto por Voz】¡El ganador toma el control total durante 1 minuto! El perdedor debe obedecer cada pose o caricia dictada." },
+          { badge: "👑 Clímax Absoluto (Apuesta 500)", text: "【Enfoque Privado】Coloca la cámara enfocando tus curvas o zona íntima para que tu pareja disfrute de la vista durante 30 segundos." },
+          { badge: "👑 Clímax Absoluto (Apuesta 500)", text: "【Confesión de Sumisión】Di con voz ardiente al micrófono: 'Esta noche soy completamente tuyo/a, haz conmigo lo que quieras'." }
+        ],
+        climax: {
+          badge: "👑 BLACKJACK REAL",
+          text: "【Poder Absoluto Blackjack】¡El ganador obtiene derecho a dictar cualquier mandato directo por videollamada y el perdedor debe obedecer sin rechistar!"
+        }
+      }
     };
 
     /* TUTORIAL CONTENT GENERATOR */
@@ -1460,28 +1516,33 @@
             <div class="tut-icon-box">📱</div>
             <div class="tut-content">
               <h3>1. Conexión Íntima a Distancia</h3>
-              <p>El anfitrión pulsa <strong>"Crear Nido de Amor"</strong> y obtiene un código de 6 dígitos o copia el enlace directo. La pareja abre el enlace desde su móvil o introduce el código para conectar al instante vía WebRTC seguro.</p>
+              <p>El anfitrión pulsa <strong>"Crear Nido de Amor"</strong> y copia el enlace íntimo para enviárselo a su pareja. Ambos conectan de inmediato por WebRTC en su móvil. ¡Recomendamos tener la videollamada o llamada encendida!</p>
             </div>
           </div>
           <div class="tutorial-step-card">
-            <div class="tut-icon-box">🃏</div>
+            <div class="tut-icon-box">🪙</div>
             <div class="tut-content">
-              <h3>2. Reglas del Blackjack (Veintiuno)</h3>
-              <p>Ambos compiten por sumar <strong>21 puntos</strong> o acercarse lo más posible sin pasarse. Las figuras (J, Q, K) valen 10, el As vale 1 u 11. Un As + figura de inicio forma un <strong>Blackjack</strong> inmediato.</p>
+              <h3>2. Apuestas y Niveles de Intensidad Erótica</h3>
+              <p>¡El monto apostado define la sensualidad del reto si pierdes! Cada jugador inicia con <strong>1500 fichas</strong>:
+                <br>• <strong>50 Fichas:</strong> Caricia Suave (miradas seductoras, susurros al oído).
+                <br>• <strong>100 Fichas:</strong> Contacto Candente (mostrar clavícula, caricias por la ropa).
+                <br>• <strong>250 Fichas:</strong> Medianoche Ardiente (audios eróticos, confesar fantasías íntimas).
+                <br>• <strong>500 Fichas:</strong> Clímax Total (desnudez forzosa, control remoto por videollamada).
+              </p>
             </div>
           </div>
           <div class="tutorial-step-card">
-            <div class="tut-icon-box">🔥</div>
+            <div class="tut-icon-box">🚨</div>
             <div class="tut-content">
-              <h3>3. Desnudez y Retos Eróticos</h3>
-              <p>Al perder una ronda o quedarse sin fichas, el perdedor debe elegir: <strong>cumplir el reto candente</strong> que le asigne el sistema o <strong>quitarse una de las 4 capas de ropa</strong> (Abrigo 🧥 -> Top 👚 -> Pantalón 👖 -> Íntima 👙).</p>
+              <h3>3. Bancarrota: ¡Momento de la Pasión Absoluta!</h3>
+              <p>El juego está calibrado para que la quiebra requiera varias rondas intensas. ¡Pero cuando alguien <strong>llega a 0 fichas</strong>, suena la alarma de bancarrota y el perdedor debe entregarse por completo a todos los deseos íntimos del ganador ante la cámara!</p>
             </div>
           </div>
           <div class="tutorial-step-card">
             <div class="tut-icon-box">💓</div>
             <div class="tut-content">
               <h3>4. Latidos y Flirteo en Tiempo Real</h3>
-              <p>Pulsa el botón <strong>"💓 Enviar Latido"</strong> en cualquier momento: el móvil de tu pareja vibrará con fuerza y sonará un latido de corazón real. ¡Ideal para jugar con llamada o videollamada activa!</p>
+              <p>Pulsa el botón <strong>"💓 Enviar Latido"</strong> en cualquier momento: el móvil de tu pareja vibrará con fuerza y sonará un latido de corazón real, haciendo sentir vuestro deseo a través de la distancia.</p>
             </div>
           </div>
         `;
@@ -1490,29 +1551,34 @@
         <div class="tutorial-step-card">
           <div class="tut-icon-box">📱</div>
           <div class="tut-content">
-            <h3>1. 遠距離一鍵連線教學</h3>
-            <p>房主點擊<strong>「創建愛巢」</strong>取得 6 碼代碼，直接點<strong>「複製專屬甜蜜連結」</strong>發給另一半。伴侶點開連結即可秒速自動進房，透過 WebRTC 零延遲同步雙方牌局！</p>
+            <h3>1. 遠距離專屬一鍵連線教學</h3>
+            <p>房主點擊<strong>「創建愛巢」</strong>直接按<strong>「複製專屬甜蜜連結」</strong>發給另一半。伴侶點開連結即秒速進房同步！建議兩人<strong>同時開啟視訊電話或語音通話</strong>，所有懲罰均針對遠距離螢幕與鏡頭量身打造！</p>
           </div>
         </div>
         <div class="tutorial-step-card">
-          <div class="tut-icon-box">🃏</div>
+          <div class="tut-icon-box">🪙</div>
           <div class="tut-content">
-            <h3>2. 二十一點玩法與獲勝秘訣</h3>
-            <p>雙方比誰的牌面總和最接近 <strong>21 點</strong>且不爆牌（J, Q, K 為 10 點，A 可算 1 或 11 點）。起手兩張直接 21 點觸發 <strong>Blackjack 王牌爆擊</strong>，可享有「絕對命令權」！</p>
+            <h3>2. 下注金額與情趣辣度四階連動</h3>
+            <p>每人初始擁有 <strong>1500 心跳籌碼</strong>，下注金額直接決定輸家抽取的懲罰強度：
+              <br>• <strong>下注 50 (微糖)：</strong>鏡頭眼神挑逗、麥克風性感氣音耳語。
+              <br>• <strong>下注 100 (半熟)：</strong>解扣微露鎖骨、隔衣撫摸特寫展示。
+              <br>• <strong>下注 250 (午夜)：</strong>閉眼語音遙控愛撫、私密羞羞幻想告白。
+              <br>• <strong>下注 500 (豪賭)：</strong>強制貼身褪裳、1 分鐘視訊絕對口述遙控！
+            </p>
           </div>
         </div>
         <div class="tutorial-step-card">
-          <div class="tut-icon-box">🔥</div>
+          <div class="tut-icon-box">🚨</div>
           <div class="tut-content">
-            <h3>3. 褪裳裝備與情趣懲罰機制</h3>
-            <p>落敗方可自由在<strong>「執行火辣指令」</strong>與<strong>「褪下一件裝備」</strong>（飾品外套 🧥 -> 上衣 👚 -> 下著 👖 -> 貼身私密 👙）二選一，隨著局數進行氣氛直線升溫！</p>
+            <h3>3. 終極破產機制・準備壞壞大典！</h3>
+            <p>遊戲設計兼具拉鋸戰與高潮：正常可享受 8~15 輪刺激對決。一旦有人<strong>籌碼輸光至 0 點宣告破產</strong>，全螢幕立即引爆【終極破產警報】！輸家今晚全面淪陷，必須無條件打開鏡頭、脫下剩餘裝備、完全聽從贏家擺布！</p>
           </div>
         </div>
         <div class="tutorial-step-card">
           <div class="tut-icon-box">💓</div>
           <div class="tut-content">
             <h3>4. 遠距即時心跳共振與調情</h3>
-            <p>點擊<strong>「💓 傳送心跳」</strong>，對方的螢幕會劇烈震動並響起低頻心跳重音；搭配「💋 隔空親親」、「🔥 你好迷人」調情按鈕，即使相隔千里也能感受彼此溫度。</p>
+            <p>點擊<strong>「💓 傳送心跳」</strong>，對方的螢幕會劇烈震動並響起低頻心跳重音；搭配「💋 隔空親親」、「🔥 你好迷人」調情按鈕，相隔兩地也能感受彼此心跳加劇。</p>
           </div>
         </div>
       `;
@@ -1720,8 +1786,8 @@
       oppAvatar: '💋',
 
       // Chips & Wardrobe (4 layers)
-      myChips: 1000,
-      oppChips: 1000,
+      myChips: 1500,
+      oppChips: 1500,
       currentBet: 100,
       myWear: [true, true, true, true],
       oppWear: [true, true, true, true],
@@ -2110,16 +2176,18 @@
         gameBanner.textContent = dict.bannerTie.replace('%score%', myScore);
       }
 
-      if (result === 'my_win') {
+            if (result === 'my_win') {
         sound.playWin();
         if (typeof confetti === 'function') confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
         state.myChips += state.currentBet * 2;
         updateUI();
+        if (checkBankruptcy()) return;
         setTimeout(() => { triggerDareModal(false, isBlackjack); }, 1200);
       } else if (result === 'opp_win') {
         sound.playBust();
         state.oppChips += state.currentBet * 2;
         updateUI();
+        if (checkBankruptcy()) return;
         setTimeout(() => { triggerDareModal(true, isOppBlackjack); }, 1200);
       } else {
         state.myChips += state.currentBet;
@@ -2136,10 +2204,107 @@
       updateUI();
     }
 
+        function getDareForBet(bet, isClimax) {
+      const daresObj = DARES[state.lang];
+      if (isClimax) return daresObj.climax;
+      let pool;
+      if (bet <= 50) pool = daresObj.tier50;
+      else if (bet <= 100) pool = daresObj.tier100;
+      else if (bet <= 250) pool = daresObj.tier250;
+      else pool = daresObj.tier500;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function checkBankruptcy() {
+      if (state.myChips <= 0 || state.oppChips <= 0) {
+        const iAmBankrupt = (state.myChips <= 0);
+        showBankruptcyModal(iAmBankrupt);
+        return true;
+      }
+      return false;
+    }
+
+    function showBankruptcyModal(iAmBankrupt, isRemoteCall = false) {
+      sound.playHeartbeat();
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+      }
+      const modal = document.getElementById('bankruptcy-modal');
+      const badge = document.getElementById('bankrupt-badge');
+      const title = document.getElementById('bankrupt-title');
+      const content = document.getElementById('bankrupt-content');
+      const btnAccept = document.getElementById('btn-accept-bankrupt');
+
+      if (!isRemoteCall && state.isRemote && state.conn) {
+        state.conn.send({
+          type: 'BANKRUPTCY',
+          iAmBankrupt: !iAmBankrupt
+        });
+      }
+
+      if (state.lang === 'es') {
+        badge.textContent = "🚨 ALERTA DE BANCARROTA・¡HORA DE LA PASIÓN!";
+        if (iAmBankrupt) {
+          title.textContent = "💔 ¡Te has quedado sin fichas! Total sumisión";
+          content.innerHTML = `
+            <p style="margin-bottom: 8px;"><strong>¡Tus fichas se han agotado por completo!</strong></p>
+            <p>De acuerdo con las reglas de Medianoche, ahora debes entregarte por completo a tu pareja:</p>
+            <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+              <li>1. Enciende tu cámara y mantén el audio abierto.</li>
+              <li>2. Quítate todas las prendas restantes de forma sensual.</li>
+              <li>3. ¡Ponte a disposición total de tu pareja y obedece cada uno de sus deseos esta noche!</li>
+            </ul>
+          `;
+          btnAccept.textContent = "💋 ¡Acepto la derrota! Me rindo a tus deseos";
+        } else {
+          title.textContent = `👑 ¡${state.oppNickname} ha quebrado! Victoria Absoluta`;
+          content.innerHTML = `
+            <p style="margin-bottom: 8px;"><strong>¡Has dejado sin fichas a tu pareja!</strong></p>
+            <p>Tu amor ha entrado en modo de sumisión total esta noche:</p>
+            <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+              <li>1. Exígele que encienda su cámara en primer plano.</li>
+              <li>2. Ordénale que se despoje de sus prendas ante tus ojos.</li>
+              <li>3. ¡Toma el control absoluto por llamada o videollamada y disfruta de tu premio!</li>
+            </ul>
+          `;
+          btnAccept.textContent = "✨ ¡Reclamar mi premio de sumisión!";
+        }
+      } else {
+        badge.textContent = "🚨 破產臣服警報・準備壞壞了！";
+        if (iAmBankrupt) {
+          title.textContent = "💔 你的籌碼已全部輸光！今晚全面淪陷";
+          content.innerHTML = `
+            <p style="margin-bottom: 8px;"><strong>你的心跳籌碼已歸零！</strong></p>
+            <p>依據午夜博弈規則，你現在必須進入無條件完全臣服狀態：</p>
+            <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+              <li>1. 保持視訊鏡頭與語音通話暢通特寫。</li>
+              <li>2. 在鏡頭前將所有剩餘裝備褪去。</li>
+              <li>3. 今晚全權由贏家口述指揮擺布，甘願接受所有私密命令！</li>
+            </ul>
+          `;
+          btnAccept.textContent = "💋 我甘願認輸臣服！立即執行終極壞壞";
+        } else {
+          title.textContent = `👑 ${state.oppNickname} 破產了！今晚完全屬於你`;
+          content.innerHTML = `
+            <p style="margin-bottom: 8px;"><strong>你成功將對方的籌碼全部贏光！</strong></p>
+            <p>你的另一半今晚已經全面淪陷，進入絕對臣服模式：</p>
+            <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+              <li>1. 要求對方打開視訊鏡頭正面特寫。</li>
+              <li>2. 命令對方在鏡頭前褪下剩餘衣物。</li>
+              <li>3. 享有完全口頭指揮權，盡情享受今晚的二人私密時光！</li>
+            </ul>
+          `;
+          btnAccept.textContent = "✨ 驗收戰果！開始享受極致特權";
+        }
+      }
+
+      modal.style.display = 'flex';
+    }
+
     function triggerDareModal(iAmLoser, isClimax) {
       sound.playHeartbeat();
       const dict = I18N[state.lang];
-      const daresPool = DARES[state.lang];
+      const dareObj = getDareForBet(state.currentBet, isClimax);
 
       const modal = document.getElementById('dare-modal');
       const badge = document.getElementById('modal-badge');
@@ -2147,14 +2312,6 @@
       const content = document.getElementById('modal-content');
       const btnComplete = document.getElementById('btn-complete-dare');
       const btnStrip = document.getElementById('btn-strip-alternative');
-
-      let dareObj;
-      if (isClimax) {
-        dareObj = daresPool[daresPool.length - 1];
-      } else {
-        const pool = daresPool.slice(0, daresPool.length - 1);
-        dareObj = pool[Math.floor(Math.random() * pool.length)];
-      }
 
       badge.textContent = dareObj.badge;
       if (iAmLoser) {
@@ -2341,6 +2498,18 @@
           sound.playWin();
           showToast(data.text);
           break;
+        case 'BANKRUPTCY':
+          showBankruptcyModal(data.iAmBankrupt, true);
+          break;
+        case 'RESTART_GAME':
+          document.getElementById('bankruptcy-modal').style.display = 'none';
+          state.myChips = 1500;
+          state.oppChips = 1500;
+          state.myWear = [true, true, true, true];
+          state.oppWear = [true, true, true, true];
+          resetForNextBet();
+          showToast(state.lang === 'es' ? "🔄 Fichas recargadas por tu pareja" : "🔄 另一半已重設 1500 籌碼！開啟新夜晚！");
+          break;
       }
     }
 
@@ -2460,6 +2629,25 @@
           state.currentBet = parseInt(btn.dataset.bet);
           currentBetDisplay.textContent = state.currentBet;
         });
+      });
+
+            // Bankruptcy modal button listeners
+      document.getElementById('btn-accept-bankrupt').addEventListener('click', () => {
+        document.getElementById('bankruptcy-modal').style.display = 'none';
+        showToast(state.lang === 'es' ? "💋 ¡Momento de pasión comenzado!" : "💋 終極壞壞時間開始～！");
+      });
+
+      document.getElementById('btn-restart-game').addEventListener('click', () => {
+        document.getElementById('bankruptcy-modal').style.display = 'none';
+        state.myChips = 1500;
+        state.oppChips = 1500;
+        state.myWear = [true, true, true, true];
+        state.oppWear = [true, true, true, true];
+        resetForNextBet();
+        if (state.isRemote && state.conn) {
+          state.conn.send({ type: 'RESTART_GAME' });
+        }
+        showToast(state.lang === 'es' ? "🔄 1500 fichas recargadas para una nueva noche" : "🔄 已重新充值 1500 籌碼，開啟新夜晚！");
       });
 
       // Action Buttons
