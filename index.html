@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Midnight Velvet 21・午夜魅影情趣 21 點</title>
+  <title>Midnight Velvet 21・午夜魅影情趣 21 點 / Blackjack Sensual</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Serif+TC:wght@400;600;900&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
@@ -69,13 +69,15 @@
     header {
       position: relative;
       z-index: 10;
-      padding: 14px 20px;
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(180deg, rgba(20, 8, 28, 0.85) 0%, rgba(20, 8, 28, 0) 100%);
+      background: linear-gradient(180deg, rgba(20, 8, 28, 0.88) 0%, rgba(20, 8, 28, 0.2) 100%);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .brand {
@@ -92,7 +94,7 @@
 
     .brand-title {
       font-family: 'Cinzel', serif;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 700;
       background: linear-gradient(135deg, #fff 20%, var(--gold-light) 60%, var(--gold-primary) 100%);
       -webkit-background-clip: text;
@@ -104,20 +106,21 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .icon-btn {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--glass-border);
       color: var(--gold-light);
-      padding: 7px 12px;
-      border-radius: 20px;
-      font-size: 13px;
+      padding: 6px 11px;
+      border-radius: 18px;
+      font-size: 12.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.25s ease;
       font-family: 'Montserrat', sans-serif;
     }
@@ -129,20 +132,46 @@
       transform: translateY(-1px);
     }
 
+    /* Language Switcher Pill */
+    .lang-switcher {
+      display: flex;
+      background: rgba(10, 4, 18, 0.85);
+      border: 1px solid var(--gold-primary);
+      border-radius: 20px;
+      padding: 2px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    .lang-opt {
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .lang-opt.active {
+      background: linear-gradient(135deg, var(--burgundy), var(--scarlet));
+      color: #fff;
+      box-shadow: 0 0 8px var(--rose-glow);
+    }
+
     /* Connection Status Badge */
     .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
-      padding: 4px 10px;
+      font-size: 11.5px;
+      padding: 4px 9px;
       border-radius: 12px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #888;
     }
@@ -175,19 +204,19 @@
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
-      padding: 28px 24px;
+      padding: 26px 22px;
       text-align: center;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(164, 19, 60, 0.2);
       backdrop-filter: blur(16px);
-      max-width: 540px;
-      margin: 20px auto;
+      max-width: 560px;
+      margin: 15px auto;
       width: 100%;
       animation: fadeIn 0.4s ease-out;
     }
 
     .lobby-subtitle {
       color: var(--gold-light);
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 6px;
@@ -195,9 +224,9 @@
 
     .lobby-title {
       font-family: 'Cinzel', serif;
-      font-size: 26px;
+      font-size: 25px;
       color: #fff;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       background: linear-gradient(135deg, #fff, #ffd1dc, var(--scarlet));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -207,7 +236,7 @@
       color: var(--text-muted);
       font-size: 13.5px;
       line-height: 1.6;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .player-setup {
@@ -219,11 +248,12 @@
     }
 
     .input-label {
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--gold-light);
       font-weight: 600;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 5px;
     }
 
     .custom-input {
@@ -231,9 +261,9 @@
       background: rgba(10, 4, 18, 0.75);
       border: 1px solid rgba(212, 175, 55, 0.35);
       border-radius: 12px;
-      padding: 12px 16px;
+      padding: 11px 15px;
       color: #fff;
-      font-size: 15px;
+      font-size: 14.5px;
       outline: none;
       transition: all 0.2s;
     }
@@ -249,7 +279,7 @@
       margin-top: 6px;
     }
     .avatar-chip {
-      font-size: 24px;
+      font-size: 22px;
       padding: 6px 10px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.05);
@@ -266,7 +296,7 @@
     .lobby-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
       margin-top: 10px;
     }
 
@@ -274,9 +304,9 @@
       background: linear-gradient(135deg, var(--burgundy) 0%, var(--crimson) 100%);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
-      padding: 14px;
+      padding: 13px;
       border-radius: 14px;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(164, 19, 60, 0.35);
@@ -284,7 +314,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .lobby-btn:hover {
@@ -324,7 +354,7 @@
 
     /* SHARE ROOM POPUP / MODAL */
     .room-share-box {
-      background: rgba(10, 4, 18, 0.9);
+      background: rgba(10, 4, 18, 0.92);
       border: 1px solid var(--gold-primary);
       border-radius: 14px;
       padding: 16px;
@@ -356,7 +386,7 @@
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 18px;
-      padding: 16px 20px;
+      padding: 15px 18px;
       backdrop-filter: blur(12px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       position: relative;
@@ -372,23 +402,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .player-info {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
     .player-avatar {
-      font-size: 28px;
+      font-size: 26px;
       filter: drop-shadow(0 0 8px rgba(255, 42, 109, 0.4));
     }
     .player-name {
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15.5px;
       letter-spacing: 1px;
     }
     .player-role-badge {
@@ -398,6 +430,7 @@
       background: rgba(212, 175, 55, 0.2);
       color: var(--gold-light);
       border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-left: 4px;
     }
 
     /* Wardrobe / Clothing Layers Status */
@@ -406,7 +439,7 @@
       align-items: center;
       gap: 6px;
       font-size: 12px;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.35);
       padding: 4px 10px;
       border-radius: 14px;
       border: 1px solid rgba(255, 42, 109, 0.2);
@@ -416,7 +449,7 @@
       transition: all 0.3s;
     }
     .clothing-icon.stripped {
-      opacity: 0.25;
+      opacity: 0.22;
       filter: grayscale(1);
       transform: scale(0.85);
       text-decoration: line-through;
@@ -425,7 +458,7 @@
     /* Score and Chips Display */
     .player-stats {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
     }
     .stat-chip {
@@ -434,7 +467,7 @@
       gap: 5px;
       color: var(--gold-light);
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       font-family: 'Cinzel', serif;
     }
     .stat-hand-score {
@@ -443,7 +476,7 @@
       border-radius: 12px;
       font-family: 'Cinzel', serif;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14.5px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 0 10px rgba(164, 19, 60, 0.3);
     }
@@ -452,17 +485,17 @@
     .cards-row {
       display: flex;
       gap: 12px;
-      min-height: 125px;
+      min-height: 122px;
       align-items: center;
       overflow-x: auto;
-      padding: 8px 4px;
+      padding: 6px 4px;
       perspective: 1000px;
     }
 
     /* LUXURY PLAYING CARD */
     .poker-card {
-      width: 82px;
-      height: 118px;
+      width: 80px;
+      height: 116px;
       background: linear-gradient(145deg, #ffffff 0%, #f0f0f5 100%);
       border-radius: 10px;
       border: 1px solid #ddd;
@@ -498,12 +531,12 @@
       font-size: 16px;
     }
     .card-suit-sm {
-      font-size: 14px;
+      font-size: 13px;
       margin-top: 2px;
     }
     .card-center {
       align-self: center;
-      font-size: 28px;
+      font-size: 26px;
     }
     .card-bottom {
       display: flex;
@@ -536,17 +569,17 @@
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 18px;
-      padding: 16px 20px;
+      padding: 15px 18px;
       backdrop-filter: blur(14px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 13px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .message-banner {
       text-align: center;
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--gold-light);
       font-weight: 600;
       letter-spacing: 1px;
@@ -559,20 +592,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .chip-btn {
       background: radial-gradient(circle at 35% 35%, #fff 0%, #d4af37 60%, #8c711a 100%);
       border: 2px dashed rgba(255, 255, 255, 0.6);
-      width: 52px;
-      height: 52px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       color: #2b1800;
       font-family: 'Cinzel', serif;
       font-weight: 900;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -596,20 +629,20 @@
 
     .action-buttons-row {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .game-action-btn {
       flex: 1;
-      min-width: 120px;
+      min-width: 110px;
       max-width: 180px;
-      padding: 13px 18px;
+      padding: 12px 16px;
       border-radius: 14px;
       font-family: 'Cinzel', serif;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       letter-spacing: 1px;
       cursor: pointer;
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -617,7 +650,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
     }
     .game-action-btn:disabled {
       opacity: 0.35;
@@ -664,21 +697,24 @@
       background: rgba(18, 6, 26, 0.7);
       border: 1px solid rgba(255, 42, 109, 0.25);
       border-radius: 14px;
-      padding: 10px 16px;
+      padding: 9px 14px;
       margin-top: 4px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .flirt-quick-btns {
       display: flex;
-      gap: 8px;
+      gap: 7px;
+      flex-wrap: wrap;
     }
     .flirt-pill {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #ffd1dc;
-      padding: 5px 10px;
+      padding: 5px 9px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 11.5px;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -692,14 +728,14 @@
       background: linear-gradient(135deg, #a4133c, #ff2a6d);
       color: #fff;
       border: none;
-      padding: 8px 14px;
+      padding: 7px 13px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       box-shadow: 0 0 15px var(--rose-glow);
       animation: pulse-heart 2s infinite ease-in-out;
     }
@@ -707,7 +743,7 @@
       transform: scale(0.95);
     }
 
-    /* MODAL: SPICY DARE & STRIP CLIMAX */
+    /* MODAL OVERLAY BASE */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -720,7 +756,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       animation: fadeIn 0.3s ease;
     }
 
@@ -728,13 +764,16 @@
       background: linear-gradient(145deg, #240a2c 0%, #120317 100%);
       border: 2px solid var(--gold-primary);
       border-radius: 24px;
-      padding: 32px 24px;
-      max-width: 480px;
+      padding: 28px 22px;
+      max-width: 540px;
       width: 100%;
       text-align: center;
       box-shadow: 0 0 40px rgba(255, 42, 109, 0.4), 0 20px 50px rgba(0,0,0,0.8);
       position: relative;
       animation: zoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .dare-badge {
@@ -748,28 +787,30 @@
       background: rgba(255, 42, 109, 0.25);
       color: #ff8fab;
       border: 1px solid var(--scarlet);
+      align-self: center;
     }
 
     .dare-title {
       font-family: 'Cinzel', serif;
-      font-size: 24px;
+      font-size: 22px;
       color: #fff;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       background: linear-gradient(135deg, #fff, var(--gold-light), var(--gold-primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .dare-content {
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.7;
       color: #fce7f3;
-      margin: 16px 0 26px 0;
+      margin: 14px 0 22px 0;
       padding: 16px;
       background: rgba(255, 255, 255, 0.04);
       border-radius: 16px;
       border-left: 3px solid var(--scarlet);
       font-weight: 500;
+      text-align: left;
     }
 
     .dare-actions {
@@ -782,9 +823,9 @@
       background: linear-gradient(135deg, var(--crimson), var(--scarlet));
       color: #fff;
       border: none;
-      padding: 14px;
+      padding: 13px;
       border-radius: 14px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 20px var(--rose-glow);
@@ -801,7 +842,7 @@
       color: var(--text-muted);
       padding: 10px;
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 13.5px;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -810,18 +851,65 @@
       border-color: var(--gold-primary);
     }
 
+    /* TUTORIAL GUIDE STYLING */
+    .tutorial-scroll-body {
+      overflow-y: auto;
+      text-align: left;
+      padding-right: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 10px 0 16px 0;
+    }
+
+    .tutorial-step-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .tut-icon-box {
+      font-size: 24px;
+      background: rgba(255, 42, 109, 0.2);
+      border: 1px solid var(--scarlet);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tut-content h3 {
+      font-size: 14.5px;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .tut-content p {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
     /* TOAST NOTIFICATION */
     .toast-notice {
       position: fixed;
       top: 75px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(20, 6, 28, 0.92);
+      background: rgba(20, 6, 28, 0.94);
       border: 1px solid var(--scarlet);
       color: #fff;
       padding: 10px 20px;
       border-radius: 20px;
-      font-size: 14px;
+      font-size: 13.5px;
       z-index: 200;
       box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px var(--rose-glow);
       display: none;
@@ -865,7 +953,6 @@
       50% { opacity: 1; text-shadow: 0 0 16px var(--scarlet); }
     }
 
-    /* Screen Shake when heartbeat sent */
     .screen-shake {
       animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
     }
@@ -878,15 +965,15 @@
 
     /* Responsive */
     @media (max-width: 600px) {
-      .brand-title { font-size: 16px; }
+      .brand-title { font-size: 15px; }
       .lobby-grid { grid-template-columns: 1fr; }
       .solo-btn { grid-column: span 1; }
-      .poker-card { width: 70px; height: 104px; }
-      .cards-row { min-height: 112px; }
+      .poker-card { width: 68px; height: 102px; }
+      .cards-row { min-height: 108px; }
       .card-center { font-size: 22px; }
       .chip-btn { width: 44px; height: 44px; font-size: 12px; }
-      .game-action-btn { min-width: 90px; padding: 11px 12px; font-size: 13.5px; }
-      .dare-card-modal { padding: 24px 18px; }
+      .game-action-btn { min-width: 88px; padding: 10px 10px; font-size: 12.5px; }
+      .dare-card-modal { padding: 22px 16px; }
     }
   </style>
 </head>
@@ -899,19 +986,32 @@
   <header>
     <div class="brand">
       <span class="brand-icon">💋</span>
-      <span class="brand-title">MIDNIGHT 21</span>
+      <span class="brand-title" id="ui-brand-title">MIDNIGHT 21</span>
     </div>
 
     <div class="header-actions">
+      <!-- Language Selector -->
+      <div class="lang-switcher" id="lang-switcher">
+        <span class="lang-opt active" data-lang="zh">繁中</span>
+        <span class="lang-opt" data-lang="es">ES</span>
+      </div>
+
+      <!-- Tutorial Button -->
+      <button class="icon-btn" id="tutorial-toggle-btn" title="遊玩教學 / Tutorial">
+        <span id="ui-btn-tutorial">📖 教學</span>
+      </button>
+
       <div class="status-badge" id="net-badge">
         <span class="status-dot" id="net-dot"></span>
         <span id="net-status-text">單機準備中</span>
       </div>
+
       <button class="icon-btn" id="audio-toggle-btn" title="切換音效">
         <span id="audio-icon">🔊</span>
       </button>
-      <button class="icon-btn" id="rules-toggle-btn" title="情趣規則">
-        <span>📜 規則</span>
+
+      <button class="icon-btn" id="rules-toggle-btn" title="規則">
+        <span id="ui-btn-rules">📜 規則</span>
       </button>
     </div>
   </header>
@@ -924,19 +1024,19 @@
 
     <!-- 1. LOBBY & REMOTE MATCHMAKING PANEL -->
     <section id="lobby-panel">
-      <p class="lobby-subtitle">Sensual Blackjack For Lovers</p>
-      <h1 class="lobby-title">午夜魅影・情趣 21 點</h1>
-      <p class="lobby-desc">
+      <p class="lobby-subtitle" id="ui-lobby-sub">Sensual Blackjack For Lovers</p>
+      <h1 class="lobby-title" id="ui-lobby-title">午夜魅影・情趣 21 點</h1>
+      <p class="lobby-desc" id="ui-lobby-desc">
         專為情侶設計的微醺博弈遊戲。輸家必須在「褪下一件裝備」與「執行火辣指令」中抉擇。支持遠距離一鍵連線，隨時隨地開啟兩人秘密時光。
       </p>
 
       <div class="player-setup">
         <div>
-          <label class="input-label">你的暱稱 / 稱呼</label>
+          <label class="input-label" id="ui-label-nickname">你的暱稱 / 稱呼</label>
           <input type="text" id="player-nickname" class="custom-input" placeholder="例如：國王 / 親愛的 / 壞貓咪" value="達令">
         </div>
         <div>
-          <label class="input-label">選擇你的代表符號</label>
+          <label class="input-label" id="ui-label-avatar">選擇你的代表符號</label>
           <div class="avatar-selector" id="avatar-picker">
             <span class="avatar-chip active" data-avatar="👑">👑</span>
             <span class="avatar-chip" data-avatar="💋">💋</span>
@@ -951,39 +1051,39 @@
       <div class="lobby-grid">
         <button class="lobby-btn" id="btn-create-room">
           <span style="font-size: 20px;">🏰</span>
-          <span>創建愛巢 (當房主)</span>
+          <span id="ui-btn-create">創建愛巢 (當房主)</span>
         </button>
 
         <button class="lobby-btn secondary" id="btn-join-room-prompt">
           <span style="font-size: 20px;">🗝️</span>
-          <span>輸入代碼加入</span>
+          <span id="ui-btn-join-prompt">輸入代碼加入</span>
         </button>
 
         <button class="solo-btn" id="btn-solo-mode">
-          💖 單機同機 / 練習模式 (兩人輪流拿手機)
+          <span id="ui-btn-solo">💖 單機同機 / 練習模式 (兩人輪流拿手機)</span>
         </button>
       </div>
 
       <!-- Share Box (When Host Creates Room) -->
       <div class="room-share-box" id="room-share-box">
-        <p style="color: var(--text-muted); font-size: 13px;">把這組代碼發給女友，或直接複製甜蜜專屬連結：</p>
+        <p style="color: var(--text-muted); font-size: 13px;" id="ui-share-hint">把這組代碼發給伴侶，或直接複製甜蜜專屬連結：</p>
         <div class="room-code-display" id="display-room-code">------</div>
         <div style="display: flex; gap: 8px; justify-content: center; margin-top: 10px;">
           <button class="lobby-btn" id="btn-copy-link" style="padding: 10px 16px; font-size: 13px; flex-direction: row;">
-            <span>📋 複製專屬甜蜜連結</span>
+            <span id="ui-btn-copy-link">📋 複製專屬甜蜜連結</span>
           </button>
         </div>
-        <p style="font-size: 12px; color: var(--gold-light); margin-top: 12px; animation: blink 1.2s infinite alternate;">
+        <p style="font-size: 12px; color: var(--gold-light); margin-top: 12px; animation: blink 1.2s infinite alternate;" id="ui-wait-partner">
           ⏳ 正在等待另一半連線進房...
         </p>
       </div>
 
       <!-- Join Input Box -->
       <div class="room-share-box" id="room-join-box">
-        <label class="input-label" style="margin-bottom: 6px;">請輸入男友/女友給你的 6 碼房間代碼：</label>
+        <label class="input-label" style="margin-bottom: 6px;" id="ui-join-input-label">請輸入伴侶給你的 6 碼房間代碼：</label>
         <input type="text" id="input-join-code" class="custom-input" placeholder="例如：882341" style="text-align: center; font-size: 20px; letter-spacing: 4px;">
         <button class="lobby-btn" id="btn-confirm-join" style="width: 100%; margin-top: 12px; padding: 12px;">
-          進入甜蜜房間 💋
+          <span id="ui-btn-confirm-join">進入甜蜜房間 💋</span>
         </button>
       </div>
     </section>
@@ -997,13 +1097,13 @@
           <div class="player-info">
             <span class="player-avatar" id="opp-avatar">💋</span>
             <div>
-              <span class="player-name" id="opp-name">對手 / 達令</span>
+              <span class="player-name" id="opp-name">伴侶 / 達令</span>
               <span class="player-role-badge" id="opp-role">莊家</span>
             </div>
           </div>
 
           <div class="wardrobe-tracker" title="對手的裝備狀態">
-            <span style="color: var(--text-muted); margin-right: 4px;">裝備:</span>
+            <span style="color: var(--text-muted); margin-right: 4px;" id="ui-opp-wear-lbl">裝備:</span>
             <span class="clothing-icon" id="opp-wear-1" title="飾品/外套">🧥</span>
             <span class="clothing-icon" id="opp-wear-2" title="上衣">👚</span>
             <span class="clothing-icon" id="opp-wear-3" title="下著">👖</span>
@@ -1035,42 +1135,42 @@
 
         <!-- Betting Controls (Only visible before deal) -->
         <div class="betting-row" id="betting-controls">
-          <span style="font-size: 13px; color: var(--gold-light);">選擇下注籌碼：</span>
+          <span style="font-size: 13px; color: var(--gold-light);" id="ui-select-bet-lbl">選擇下注籌碼：</span>
           <button class="chip-btn" data-bet="50">50</button>
           <button class="chip-btn red-chip" data-bet="100">100</button>
           <button class="chip-btn black-chip" data-bet="250">250</button>
           <button class="chip-btn red-chip" data-bet="500">500</button>
           <div style="font-size: 14px; color: #fff; margin-left: 8px;">
-            當前下注：<span id="current-bet-display" style="color: var(--gold-light); font-weight: 700; font-size: 16px;">100</span>
+            <span id="ui-current-bet-lbl">當前下注：</span><span id="current-bet-display" style="color: var(--gold-light); font-weight: 700; font-size: 16px;">100</span>
           </div>
         </div>
 
         <!-- In-game Action Buttons -->
         <div class="action-buttons-row" id="action-buttons">
           <button class="game-action-btn" id="btn-deal" style="background: linear-gradient(135deg, #a4133c, #ff2a6d); color: #fff;">
-            🎲 確認下注發牌
+            <span id="ui-btn-deal">🎲 確認下注發牌</span>
           </button>
           <button class="game-action-btn btn-hit" id="btn-hit" disabled>
-            ➕ 要牌 (Hit)
+            <span id="ui-btn-hit">➕ 要牌 (Hit)</span>
           </button>
           <button class="game-action-btn btn-stand" id="btn-stand" disabled>
-            ✋ 停牌 (Stand)
+            <span id="ui-btn-stand">✋ 停牌 (Stand)</span>
           </button>
           <button class="game-action-btn btn-double" id="btn-double" disabled>
-            ⚡ 加倍 (Double)
+            <span id="ui-btn-double">⚡ 加倍 (Double)</span>
           </button>
         </div>
 
         <!-- Flirt & Remote Heartbeat Bar -->
         <div class="intimacy-bar">
           <div class="flirt-quick-btns">
-            <button class="flirt-pill" data-flirt="kiss">💋 隔空親親</button>
-            <button class="flirt-pill" data-flirt="spicy">🔥 你好迷人</button>
-            <button class="flirt-pill" data-flirt="surrender">🥺 饒了我吧</button>
+            <button class="flirt-pill" data-flirt="kiss" id="ui-flirt-kiss">💋 隔空親親</button>
+            <button class="flirt-pill" data-flirt="spicy" id="ui-flirt-spicy">🔥 你好迷人</button>
+            <button class="flirt-pill" data-flirt="surrender" id="ui-flirt-surrender">🥺 饒了我吧</button>
           </div>
 
-          <button class="heartbeat-sync-btn" id="btn-send-heartbeat" title="點擊向對方發射真實心跳振動">
-            <span>💓 傳送心跳</span>
+          <button class="heartbeat-sync-btn" id="btn-send-heartbeat" title="傳送心跳">
+            <span id="ui-btn-heartbeat">💓 傳送心跳</span>
           </button>
         </div>
       </div>
@@ -1087,7 +1187,7 @@
           </div>
 
           <div class="wardrobe-tracker" title="我的裝備狀態">
-            <span style="color: var(--text-muted); margin-right: 4px;">裝備:</span>
+            <span style="color: var(--text-muted); margin-right: 4px;" id="ui-my-wear-lbl">裝備:</span>
             <span class="clothing-icon" id="my-wear-1" title="飾品/外套">🧥</span>
             <span class="clothing-icon" id="my-wear-2" title="上衣">👚</span>
             <span class="clothing-icon" id="my-wear-3" title="下著">👖</span>
@@ -1121,7 +1221,7 @@
       <span class="dare-badge" id="modal-badge">🔥 午夜心跳懲罰</span>
       <h2 class="dare-title" id="modal-title">命運的降臨</h2>
       <div class="dare-content" id="modal-content">
-        輸家必須隔著鏡頭或在身旁，深情撫摸對方的鎖骨 20 秒，並在耳邊輕聲說一句：「今晚聽你的」。
+        <!-- Text injected -->
       </div>
       <div class="dare-actions">
         <button class="dare-primary-btn" id="btn-complete-dare">
@@ -1134,18 +1234,35 @@
     </div>
   </div>
 
-  <!-- 4. MODAL: GAME RULES & INTIMACY GUIDE -->
+  <!-- 4. MODAL: TUTORIAL GUIDE (雙語詳細教學) -->
+  <div class="modal-overlay" id="tutorial-modal">
+    <div class="dare-card-modal" style="max-width: 580px;">
+      <span class="dare-badge" style="background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border-color: var(--gold-primary);" id="tut-badge">
+        TUTORIAL & GUÍA
+      </span>
+      <h2 class="dare-title" id="tut-modal-title">情侶連線遊玩教學</h2>
+
+      <div class="tutorial-scroll-body" id="tut-content-area">
+        <!-- Rendered based on language -->
+      </div>
+
+      <div style="margin-top: 10px;">
+        <button class="dare-primary-btn" id="btn-close-tutorial" style="width: 100%;">
+          ✨ 開始甜蜜遊玩 (¡Empezar a Jugar!)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. MODAL: GAME RULES & INTIMACY GUIDE -->
   <div class="modal-overlay" id="rules-modal">
     <div class="dare-card-modal" style="max-width: 520px; text-align: left;">
-      <span class="dare-badge" style="background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border-color: var(--gold-primary);">
-        RULEBOOK
+      <span class="dare-badge" style="background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border-color: var(--gold-primary);" id="rules-badge">
+        RULEBOOK / REGLAMENTO
       </span>
-      <h2 class="dare-title" style="text-align: center; margin-bottom: 12px;">午夜 21 點・情趣規則</h2>
-      <div style="font-size: 13.5px; line-height: 1.8; color: var(--text-muted); max-height: 340px; overflow-y: auto; padding-right: 8px;">
-        <p><strong style="color: var(--gold-light);">1. 基本博弈：</strong>雙方比誰的牌面總和最接近 21 點且不爆牌（J, Q, K 為 10 點，A 可算 1 或 11 點）。</p>
-        <p><strong style="color: var(--gold-light);">2. 黑傑克爆擊 (Blackjack)：</strong>起始兩張直接 21 點觸發王牌爆擊！贏家享有「絕對命令權」，可要求輸家做任何想做的事。</p>
-        <p><strong style="color: var(--gold-light);">3. 褪裳與懲罰機制：</strong>每局落敗者，或是籌碼輸光時，必須在「執行火辣指令」或「褪下一件裝備（外衣 -> 上著 -> 下著 -> 貼身）」中二選一！</p>
-        <p><strong style="color: var(--gold-light);">4. 遠端心跳互動：</strong>即使相隔兩地，點擊「💓 傳送心跳」按鈕，對方的畫面會劇烈震動並響起真實心跳聲；搭配視訊或通話體驗最佳！</p>
+      <h2 class="dare-title" style="text-align: center; margin-bottom: 12px;" id="rules-modal-title">午夜 21 點・情趣規則</h2>
+      <div style="font-size: 13.5px; line-height: 1.8; color: var(--text-muted); max-height: 340px; overflow-y: auto; padding-right: 8px;" id="rules-content-area">
+        <!-- Injected by JS -->
       </div>
       <div style="margin-top: 18px; text-align: center;">
         <button class="dare-primary-btn" id="btn-close-rules" style="width: 100%;">
@@ -1158,7 +1275,269 @@
   <!-- SCRIPT LOGIC -->
   <script>
     /* =====================================================================
-       1. LUXURY PROCEDURAL AUDIO SYNTHESIZER (Web Audio API - No Missing Files)
+       1. I18N DICTIONARY (CHINESE & SPANISH)
+       ===================================================================== */
+    const I18N = {
+      zh: {
+        brand: "MIDNIGHT 21",
+        lobbySub: "Sensual Blackjack For Lovers",
+        lobbyTitle: "午夜魅影・情趣 21 點",
+        lobbyDesc: "專為情侶設計的微醺博弈遊戲。輸家必須在「褪下一件裝備」與「執行火辣指令」中抉擇。支持遠距離一鍵連線，隨時隨地開啟兩人秘密時光。",
+        labelNickname: "你的暱稱 / 稱呼",
+        labelAvatar: "選擇你的代表符號",
+        btnCreate: "創建愛巢 (當房主)",
+        btnJoinPrompt: "輸入代碼加入",
+        btnSolo: "💖 單機同機 / 練習模式 (兩人輪流拿手機)",
+        shareHint: "把這組代碼發給伴侶，或直接複製甜蜜專屬連結：",
+        btnCopyLink: "📋 複製專屬甜蜜連結",
+        waitPartner: "⏳ 正在等待另一半連線進房...",
+        joinInputLabel: "請輸入伴侶給你的 6 碼房間代碼：",
+        joinInputPlaceholder: "例如：882341",
+        btnConfirmJoin: "進入甜蜜房間 💋",
+        nicknameDefault: "達令",
+        oppNicknameDefault: "伴侶",
+        roleDealer: "莊家",
+        rolePlayer: "閒家",
+        wearLabel: "裝備:",
+        selectBet: "選擇下注籌碼：",
+        currentBet: "當前下注：",
+        btnDeal: "🎲 確認下注發牌",
+        btnHit: "➕ 要牌 (Hit)",
+        btnStand: "✋ 停牌 (Stand)",
+        btnDouble: "⚡ 加倍 (Double)",
+        flirtKiss: "💋 隔空親親",
+        flirtSpicy: "🔥 你好迷人",
+        flirtSurrender: "🥺 饒了我吧",
+        btnHeartbeat: "💓 傳送心跳",
+        btnTutorial: "📖 教學",
+        btnRules: "📜 規則",
+        statusOffline: "單機準備中",
+        statusConnecting: "連線雲端中...",
+        statusRoomWaiting: "房號：%code% (等待加入)",
+        statusConnected: "❤️ 兩人已連線",
+        statusDisconnected: "💔 對方已斷線",
+        statusSolo: "💖 兩人同機模式",
+        toastAudioOn: "🔊 音效已開啟",
+        toastAudioOff: "🔇 已靜音",
+        toastCopied: "📋 專屬甜蜜連結已複製！快發給伴侶吧！",
+        toastHeartbeatSent: "💓 已向另一半發射心跳電波！",
+        toastHeartbeatRecv: "💓 感受到了！%name% 向你傳送了劇烈心跳！",
+        bannerBetting: "✨ 請下注心跳籌碼，或點擊開始發牌 ✨",
+        bannerMyTurn: "🎲 你的回合：請選擇【要牌】或【停牌】",
+        bannerOppTurn: "⏳ 等待 %name% 行動中...",
+        bannerBust: "💥 爆牌了！總分超過 21 點！",
+        bannerBlackjackWin: "👑 BLACKJACK 王牌爆擊！贏得絕對特權！",
+        bannerBlackjackLose: "👑 %name% 達成 BLACKJACK 王牌爆擊！",
+        bannerWin: "🎉 你以 %my% 點擊敗 %opp% 點獲勝！",
+        bannerLose: "💔 %name% 以 %opp% 點勝過你的 %my% 點！",
+        bannerTie: "平手！雙方都是 %score% 點！",
+        bannerBothBust: "雙方均爆牌！平局重來～",
+        bannerResetNext: "✨ 調整籌碼下注，點擊確認開始下一局 ✨",
+        dareModalTitleLose: "💔 你輸了！請接受甜蜜懲罰",
+        dareModalTitleWin: "👑 你贏了！%name% 必須執行",
+        dareModalContentWinPrefix: "對方抽中的懲罰是：\n「",
+        dareModalContentWinSuffix: "」\n請盯著鏡頭或在身旁確認執行！",
+        btnCompleteDareLose: "💋 我認輸！心服口服執行完畢",
+        btnCompleteDareWin: "✨ 對方已執行完畢，進入下一局",
+        btnStripAlternative: "🫣 太害羞了！改為褪去一件裝備代替",
+        toastStripMe: "🫣 你褪下了一件裝備！",
+        toastStripOpp: "🔥 %name% 褪下了一件裝備！",
+        toastNoWear: "⚠️ 已經沒有裝備可以褪下了！今晚完全臣服！",
+        tutTitle: "情侶連線遊玩教學",
+        tutClose: "✨ 開始甜蜜遊玩",
+        rulesTitle: "午夜 21 點・情趣規則",
+        rulesClose: "我明白了，開始浪漫博弈"
+      },
+      es: {
+        brand: "MEDIANOCHE 21",
+        lobbySub: "Blackjack Sensual para Parejas",
+        lobbyTitle: "Medianoche 21・Juego Sensual",
+        lobbyDesc: "Un juego de cartas íntimo y seductor para parejas. Quien pierde debe elegir entre quitarse una prenda o cumplir un atrevido reto erótico. Conexión a distancia en un clic.",
+        labelNickname: "Tu apodo sensual",
+        labelAvatar: "Elige tu avatar",
+        btnCreate: "Crear Nido de Amor (Anfitrión)",
+        btnJoinPrompt: "Unirse con Código",
+        btnSolo: "💖 Modo Local / En el mismo móvil (Turnos)",
+        shareHint: "Envía este código a tu pareja o copia el enlace íntimo:",
+        btnCopyLink: "📋 Copiar Enlace Íntimo",
+        waitPartner: "⏳ Esperando a que tu amor se conecte...",
+        joinInputLabel: "Introduce el código de 6 dígitos de tu pareja:",
+        joinInputPlaceholder: "Ejemplo: 882341",
+        btnConfirmJoin: "Entrar a la Sala 💋",
+        nicknameDefault: "Cariño",
+        oppNicknameDefault: "Mi Amor",
+        roleDealer: "Crupier",
+        rolePlayer: "Jugador",
+        wearLabel: "Prendas:",
+        selectBet: "Elegir apuesta:",
+        currentBet: "Apuesta actual:",
+        btnDeal: "🎲 Apostar y Repartir",
+        btnHit: "➕ Pedir Carta (Hit)",
+        btnStand: "✋ Plantarse (Stand)",
+        btnDouble: "⚡ Doblar (Double)",
+        flirtKiss: "💋 Beso a distancia",
+        flirtSpicy: "🔥 Te ves irresistible",
+        flirtSurrender: "🥺 Ten piedad de mí",
+        btnHeartbeat: "💓 Enviar Latido",
+        btnTutorial: "📖 Tutorial",
+        btnRules: "📜 Reglas",
+        statusOffline: "Preparando juego local",
+        statusConnecting: "Conectando al servidor...",
+        statusRoomWaiting: "Sala: %code% (Esperando)",
+        statusConnected: "❤️ Pareja conectada",
+        statusDisconnected: "💔 Tu pareja se ha desconectado",
+        statusSolo: "💖 Modo en el mismo dispositivo",
+        toastAudioOn: "🔊 Sonido activado",
+        toastAudioOff: "🔇 Silenciado",
+        toastCopied: "📋 ¡Enlace íntimo copiado! Envíalo a tu pareja.",
+        toastHeartbeatSent: "💓 ¡Has enviado un pulso de latido a tu pareja!",
+        toastHeartbeatRecv: "💓 ¡Siente la pasión! %name% te ha enviado un latido.",
+        bannerBetting: "✨ Elige tus fichas de pasión y reparte las cartas ✨",
+        bannerMyTurn: "🎲 Es tu turno: Elige 【Pedir Carta】 o 【Plantarse】",
+        bannerOppTurn: "⏳ Esperando a que %name% juegue...",
+        bannerBust: "💥 ¡Te has pasado de 21 puntos!",
+        bannerBlackjackWin: "👑 ¡BLACKJACK REAL! ¡Has ganado el PODER ABSOLUTO!",
+        bannerBlackjackLose: "👑 ¡%name% ha conseguido un BLACKJACK REAL!",
+        bannerWin: "🎉 ¡Has ganado con %my% puntos frente a %opp% puntos!",
+        bannerLose: "💔 ¡%name% te ha superado con %opp% puntos frente a tus %my%!",
+        bannerTie: "¡Empate! Ambos tienen %score% puntos.",
+        bannerBothBust: "¡Ambos se han pasado! Ronda nula.",
+        bannerResetNext: "✨ Ajusta tu apuesta para comenzar la siguiente ronda ✨",
+        dareModalTitleLose: "💔 ¡Has perdido! Te toca cumplir un reto íntimo",
+        dareModalTitleWin: "👑 ¡Has ganado! %name% debe cumplir",
+        dareModalContentWinPrefix: "El reto para tu pareja es:\n«",
+        dareModalContentWinSuffix: "»\n¡Míralo/a fijamente a la cámara o en persona mientras lo cumple!",
+        btnCompleteDareLose: "💋 ¡Acepto la derrota! Reto cumplido",
+        btnCompleteDareWin: "✨ Reto cumplido, siguiente ronda",
+        btnStripAlternative: "🫣 ¡Qué vergüenza! Me quito una prenda en su lugar",
+        toastStripMe: "🫣 ¡Te has quitado una prenda!",
+        toastStripOpp: "🔥 ¡%name% se ha quitado una prenda!",
+        toastNoWear: "⚠️ ¡Ya no quedan prendas! ¡Rendición y entrega total!",
+        tutTitle: "Guía de Juego para Parejas",
+        tutClose: "✨ ¡Empezar a Jugar!",
+        rulesTitle: "Reglamento de Medianoche 21",
+        rulesClose: "Entendido, ¡a jugar!"
+      }
+    };
+
+    /* SPICY DARES IN BOTH LANGUAGES */
+    const DARES = {
+      zh: [
+        { badge: "💋 微糖挑逗", text: "用鼻尖輕蹭對方的臉頰與耳垂 15 秒，感受彼此的呼吸頻率。" },
+        { badge: "💋 微糖挑逗", text: "深情注視對方的眼睛 20 秒，期間雙方都不准說話或笑場，先移開視線的人要被親一口。" },
+        { badge: "💋 微糖挑逗", text: "用最溫柔、沙啞且撩人的氣音，在視訊電話中或耳邊輕喊對方的名字 3 次。" },
+        { badge: "🔥 半熟心跳", text: "隔著衣服輕輕撫摸對方的腰部、鎖骨或大腿內側 30 秒，動作要極致緩慢。" },
+        { badge: "🔥 半熟心跳", text: "親吻對方的鎖骨或頸側，留下微溫的印記，並輕咬一下耳垂。" },
+        { badge: "🔥 半熟心跳", text: "解開自己或對方的一顆鈕扣，或者拉下一點肩帶，保持這個姿勢進行下一局。" },
+        { badge: "🔥 半熟心跳", text: "任由贏家指定吻一處非臉部的部位（例如：手腕內側、掌心、肩膀）。" },
+        { badge: "🌙 午夜狂歡", text: "閉上雙眼或戴上眼罩，任由對方用手指與嘴唇探索撫摸 1 分鐘，期間只能發出呼吸聲。" },
+        { badge: "🌙 午夜狂歡", text: "坐在對方腿上或貼近鏡頭，進行一場長達 30 秒的深情熱吻。" },
+        { badge: "🌙 午夜狂歡", text: "褪去一件貼身衣物，或者讓對方替你褪下一件裝備。" },
+        { badge: "🌙 午夜狂歡", text: "在對方耳畔說出一個你心底最害羞、一直很想跟對方嘗試的私密幻想。" },
+        { badge: "👑 黑傑克王牌特權", text: "【絕對命令權】贏家享有完全主導權！贏家可直接口頭指定輸家做任何一件事，輸家無條件順從。" }
+      ],
+      es: [
+        { badge: "💋 Caricia Suave", text: "Roza con la punta de tu nariz su mejilla y lóbulo de la oreja durante 15 segundos sintiendo el calor de su respiración." },
+        { badge: "💋 Mirada Profunda", text: "Mírense fijamente a los ojos durante 20 segundos sin hablar ni sonreír. Quien desvíe la mirada primero debe dar un beso apasionado." },
+        { badge: "💋 Susurro Íntimo", text: "Susurra su nombre 3 veces con tu voz más seductora, lenta y ronca al oído o a través de la videollamada." },
+        { badge: "🔥 Contacto Candente", text: "Acaricia lentamente la cintura, la clavícula o la parte interna del muslo durante 30 segundos por encima de la ropa." },
+        { badge: "🔥 Marca de Pasión", text: "Besa su cuello o clavícula dejando un roce tibio y muerde suavemente su oreja con delicadeza." },
+        { badge: "🔥 Desabrochar", text: "Desabrocha un botón de tu camisa o baja el tirante de tu prenda y juega la siguiente ronda así." },
+        { badge: "🔥 Beso Secreto", text: "Deja que el ganador/a elija una zona de tu cuerpo que no sea la cara (como la muñeca, hombro o cuello) para darle un beso tierno." },
+        { badge: "🌙 Medianoche Erótica", text: "Cierra los ojos o déjate vendar; tu pareja podrá recorrer tus labios y cuello con sus caricias durante 1 minuto completo." },
+        { badge: "🌙 Beso Ardiente", text: "Acércate a la cámara o siéntate en su regazo y compartan un beso apasionado de 30 segundos ininterrumpidos." },
+        { badge: "🌙 Quitar Prenda", text: "Quítate una prenda de vestir o deja que tu pareja elija cuál debes quitarte ahora mismo." },
+        { badge: "🌙 Confesión Prohibida", text: "Susúrrale al oído una fantasía íntima y secreta que siempre hayas tenido deseos de realizar juntos." },
+        { badge: "👑 Clímax Blackjack (Orden Absoluta)", text: "¡PODER ABSOLUTO! El ganador tiene derecho a exigir cualquier mandato o deseo personal y el perdedor debe obedecer sin objeción." }
+      ]
+    };
+
+    /* TUTORIAL CONTENT GENERATOR */
+    function getTutorialHTML(lang) {
+      if (lang === 'es') {
+        return `
+          <div class="tutorial-step-card">
+            <div class="tut-icon-box">📱</div>
+            <div class="tut-content">
+              <h3>1. Conexión Íntima a Distancia</h3>
+              <p>El anfitrión pulsa <strong>"Crear Nido de Amor"</strong> y obtiene un código de 6 dígitos o copia el enlace directo. La pareja abre el enlace desde su móvil o introduce el código para conectar al instante vía WebRTC seguro.</p>
+            </div>
+          </div>
+          <div class="tutorial-step-card">
+            <div class="tut-icon-box">🃏</div>
+            <div class="tut-content">
+              <h3>2. Reglas del Blackjack (Veintiuno)</h3>
+              <p>Ambos compiten por sumar <strong>21 puntos</strong> o acercarse lo más posible sin pasarse. Las figuras (J, Q, K) valen 10, el As vale 1 u 11. Un As + figura de inicio forma un <strong>Blackjack</strong> inmediato.</p>
+            </div>
+          </div>
+          <div class="tutorial-step-card">
+            <div class="tut-icon-box">🔥</div>
+            <div class="tut-content">
+              <h3>3. Desnudez y Retos Eróticos</h3>
+              <p>Al perder una ronda o quedarse sin fichas, el perdedor debe elegir: <strong>cumplir el reto candente</strong> que le asigne el sistema o <strong>quitarse una de las 4 capas de ropa</strong> (Abrigo 🧥 -> Top 👚 -> Pantalón 👖 -> Íntima 👙).</p>
+            </div>
+          </div>
+          <div class="tutorial-step-card">
+            <div class="tut-icon-box">💓</div>
+            <div class="tut-content">
+              <h3>4. Latidos y Flirteo en Tiempo Real</h3>
+              <p>Pulsa el botón <strong>"💓 Enviar Latido"</strong> en cualquier momento: el móvil de tu pareja vibrará con fuerza y sonará un latido de corazón real. ¡Ideal para jugar con llamada o videollamada activa!</p>
+            </div>
+          </div>
+        `;
+      }
+      return `
+        <div class="tutorial-step-card">
+          <div class="tut-icon-box">📱</div>
+          <div class="tut-content">
+            <h3>1. 遠距離一鍵連線教學</h3>
+            <p>房主點擊<strong>「創建愛巢」</strong>取得 6 碼代碼，直接點<strong>「複製專屬甜蜜連結」</strong>發給另一半。伴侶點開連結即可秒速自動進房，透過 WebRTC 零延遲同步雙方牌局！</p>
+          </div>
+        </div>
+        <div class="tutorial-step-card">
+          <div class="tut-icon-box">🃏</div>
+          <div class="tut-content">
+            <h3>2. 二十一點玩法與獲勝秘訣</h3>
+            <p>雙方比誰的牌面總和最接近 <strong>21 點</strong>且不爆牌（J, Q, K 為 10 點，A 可算 1 或 11 點）。起手兩張直接 21 點觸發 <strong>Blackjack 王牌爆擊</strong>，可享有「絕對命令權」！</p>
+          </div>
+        </div>
+        <div class="tutorial-step-card">
+          <div class="tut-icon-box">🔥</div>
+          <div class="tut-content">
+            <h3>3. 褪裳裝備與情趣懲罰機制</h3>
+            <p>落敗方可自由在<strong>「執行火辣指令」</strong>與<strong>「褪下一件裝備」</strong>（飾品外套 🧥 -> 上衣 👚 -> 下著 👖 -> 貼身私密 👙）二選一，隨著局數進行氣氛直線升溫！</p>
+          </div>
+        </div>
+        <div class="tutorial-step-card">
+          <div class="tut-icon-box">💓</div>
+          <div class="tut-content">
+            <h3>4. 遠距即時心跳共振與調情</h3>
+            <p>點擊<strong>「💓 傳送心跳」</strong>，對方的螢幕會劇烈震動並響起低頻心跳重音；搭配「💋 隔空親親」、「🔥 你好迷人」調情按鈕，即使相隔千里也能感受彼此溫度。</p>
+          </div>
+        </div>
+      `;
+    }
+
+    /* RULES CONTENT GENERATOR */
+    function getRulesHTML(lang) {
+      if (lang === 'es') {
+        return `
+          <p><strong style="color: var(--gold-light);">1. Dinámica del 21:</strong> El objetivo es sumar un valor cercano a 21 sin pasarse. Quien obtenga mayor puntuación gana la ronda.</p>
+          <p><strong style="color: var(--gold-light);">2. Clímax Blackjack:</strong> Quien saque 21 natural en las dos primeras cartas activa el "Poder Absoluto", pudiendo dar una orden directa a su pareja.</p>
+          <p><strong style="color: var(--gold-light);">3. Prendas y Retos:</strong> El perdedor puede redimirse quitándose una capa de ropa si el reto le parece demasiado atrevido.</p>
+          <p><strong style="color: var(--gold-light);">4. Interacción Sensual:</strong> Envía pulsos de latidos y frases ardientes para intensificar la tensión durante la partida.</p>
+        `;
+      }
+      return `
+        <p><strong style="color: var(--gold-light);">1. 基本博弈：</strong>雙方比誰的牌面總和最接近 21 點且不爆牌（J, Q, K 為 10 點，A 可算 1 或 11 點）。</p>
+        <p><strong style="color: var(--gold-light);">2. 黑傑克爆擊 (Blackjack)：</strong>起始兩張直接 21 點觸發王牌爆擊！贏家享有「絕對命令權」，可要求輸家做任何想做的事。</p>
+        <p><strong style="color: var(--gold-light);">3. 褪裳與懲罰機制：</strong>每局落敗者，可在「執行火辣指令」或「褪下一件裝備（外衣 -> 上著 -> 下著 -> 貼身）」中二選一！</p>
+        <p><strong style="color: var(--gold-light);">4. 遠端心跳互動：</strong>即使相隔兩地，點擊「💓 傳送心跳」按鈕，對方的畫面會劇烈震動並響起真實心跳聲；搭配視訊或通話體驗最佳！</p>
+      `;
+    }
+
+    /* =====================================================================
+       2. PROCEDURAL AUDIO SYNTHESIZER
        ===================================================================== */
     class SoundEngine {
       constructor() {
@@ -1178,7 +1557,6 @@
         this.enabled = !this.enabled;
         return this.enabled;
       }
-      // Deal card swoosh
       playCard() {
         if (!this.enabled) return;
         this.init();
@@ -1195,7 +1573,6 @@
         osc.start(now);
         osc.stop(now + 0.13);
       }
-      // Chip click / stack
       playChip() {
         if (!this.enabled) return;
         this.init();
@@ -1212,7 +1589,6 @@
         osc.start(now);
         osc.stop(now + 0.07);
       }
-      // Heartbeat thud
       playHeartbeat() {
         if (!this.enabled) return;
         this.init();
@@ -1233,11 +1609,10 @@
         playThud(now, 85);
         playThud(now + 0.22, 70);
       }
-      // Seductive Champagne Chime
       playWin() {
         if (!this.enabled) return;
         this.init();
-        const notes = [523.25, 659.25, 783.99, 1046.50]; // C E G C
+        const notes = [523.25, 659.25, 783.99, 1046.50];
         notes.forEach((freq, idx) => {
           const t = this.ctx.currentTime + idx * 0.09;
           const osc = this.ctx.createOscillator();
@@ -1252,7 +1627,6 @@
           osc.stop(t + 0.46);
         });
       }
-      // Bust / Lose buzzer
       playBust() {
         if (!this.enabled) return;
         this.init();
@@ -1274,7 +1648,7 @@
     const sound = new SoundEngine();
 
     /* =====================================================================
-       2. AMBIENT PARTICLES (Velvet Champagne Bokeh)
+       3. AMBIENT PARTICLES
        ===================================================================== */
     const canvas = document.getElementById('ambient-canvas');
     const ctx = canvas.getContext('2d');
@@ -1288,9 +1662,7 @@
     resizeCanvas();
 
     class Particle {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
@@ -1317,81 +1689,23 @@
       }
     }
 
-    for (let i = 0; i < 45; i++) {
-      particles.push(new Particle());
-    }
+    for (let i = 0; i < 45; i++) particles.push(new Particle());
 
     function animateAmbient() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
+      particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animateAmbient);
     }
     animateAmbient();
 
     /* =====================================================================
-       3. SPICY DARE DATABASE (Categorized Romantic & Erotic Challenges)
-       ===================================================================== */
-    const SPICY_DARES = [
-      {
-        badge: "💋 微糖挑逗",
-        text: "用鼻尖輕蹭對方的臉頰與耳垂 15 秒，感受彼此的呼吸頻率。"
-      },
-      {
-        badge: "💋 微糖挑逗",
-        text: "深情注視對方的眼睛 20 秒，期間雙方都不准說話或笑場，先移開視線的人要被親一口。"
-      },
-      {
-        badge: "💋 微糖挑逗",
-        text: "用最溫柔、沙啞且撩人的氣音，在視訊電話中或耳邊輕喊對方的名字 3 次。"
-      },
-      {
-        badge: "🔥 半熟心跳",
-        text: "隔著衣服輕輕撫摸對方的腰部、鎖骨或大腿內側 30 秒，動作要極致緩慢。"
-      },
-      {
-        badge: "🔥 半熟心跳",
-        text: "親吻對方的鎖骨或頸側，留下微溫的印記，並輕咬一下耳垂。"
-      },
-      {
-        badge: "🔥 半熟心跳",
-        text: "解開自己或對方的一顆鈕扣，或者拉下一點肩帶，保持這個姿勢進行下一局。"
-      },
-      {
-        badge: "🔥 半熟心跳",
-        text: "任由贏家指定吻一處非臉部的部位（例如：手腕內側、掌心、肩膀）。"
-      },
-      {
-        badge: "🌙 午夜狂歡",
-        text: "閉上雙眼或戴上眼罩，任由對方用手指與嘴唇探索撫摸 1 分鐘，期間只能發出呼吸聲。"
-      },
-      {
-        badge: "🌙 午夜狂歡",
-        text: "坐在對方腿上或貼近鏡頭，進行一場長達 30 秒的深情熱吻。"
-      },
-      {
-        badge: "🌙 午夜狂歡",
-        text: "褪去一件貼身衣物，或者讓對方替你褪下一件裝備。"
-      },
-      {
-        badge: "🌙 午夜狂歡",
-        text: "在對方耳畔說出一個你心底最害羞、一直很想跟對方嘗試的私密幻想。"
-      },
-      {
-        badge: "👑 黑傑克王牌特權",
-        text: "【絕對命令權】贏家享有完全主導權！贏家可直接口頭指定輸家做任何一件事，輸家無條件順從。"
-      }
-    ];
-
-    /* =====================================================================
-       4. GAME STATE & NETWORKING (PeerJS WebRTC)
+       4. GAME STATE
        ===================================================================== */
     const SUITS = ['♠', '♥', '♦', '♣'];
     const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
     const state = {
+      lang: 'zh', // 'zh' or 'es'
       isRemote: false,
       isHost: false,
       peer: null,
@@ -1402,10 +1716,10 @@
       // Players profile
       myNickname: '達令',
       myAvatar: '👑',
-      oppNickname: '另一半',
+      oppNickname: '伴侶',
       oppAvatar: '💋',
 
-      // Chips & Wardrobe (4 layers: 0=coat, 1=top, 2=bottom, 3=underwear)
+      // Chips & Wardrobe (4 layers)
       myChips: 1000,
       oppChips: 1000,
       currentBet: 100,
@@ -1416,9 +1730,9 @@
       deck: [],
       myHand: [],
       oppHand: [],
-      gamePhase: 'betting', // 'betting', 'player_turn', 'opp_turn', 'round_end'
-      roundTurn: 'my',      // 'my' or 'opp'
-      dealerIsMe: false,    // toggles each round in PvP
+      gamePhase: 'betting',
+      roundTurn: 'my',
+      dealerIsMe: false,
     };
 
     // DOM Elements
@@ -1455,14 +1769,81 @@
 
     const dareModal = document.getElementById('dare-modal');
     const rulesModal = document.getElementById('rules-modal');
+    const tutorialModal = document.getElementById('tutorial-modal');
 
-    // Show Toast
+    // Toast helper
     function showToast(msg, duration = 3000) {
       toast.textContent = msg;
       toast.style.display = 'block';
-      setTimeout(() => {
-        toast.style.display = 'none';
-      }, duration);
+      setTimeout(() => { toast.style.display = 'none'; }, duration);
+    }
+
+    // Set Language
+    function setLanguage(lang) {
+      state.lang = lang;
+      const dict = I18N[lang];
+      document.documentElement.lang = (lang === 'es') ? 'es' : 'zh-TW';
+
+      // Update switcher UI
+      document.querySelectorAll('.lang-opt').forEach(opt => {
+        if (opt.dataset.lang === lang) opt.classList.add('active');
+        else opt.classList.remove('active');
+      });
+
+      // Update static UI text
+      document.getElementById('ui-brand-title').textContent = dict.brand;
+      document.getElementById('ui-lobby-sub').textContent = dict.lobbySub;
+      document.getElementById('ui-lobby-title').textContent = dict.lobbyTitle;
+      document.getElementById('ui-lobby-desc').textContent = dict.lobbyDesc;
+      document.getElementById('ui-label-nickname').textContent = dict.labelNickname;
+      document.getElementById('ui-label-avatar').textContent = dict.labelAvatar;
+      document.getElementById('ui-btn-create').textContent = dict.btnCreate;
+      document.getElementById('ui-btn-join-prompt').textContent = dict.btnJoinPrompt;
+      document.getElementById('ui-btn-solo').textContent = dict.btnSolo;
+      document.getElementById('ui-share-hint').textContent = dict.shareHint;
+      document.getElementById('ui-btn-copy-link').textContent = dict.btnCopyLink;
+      document.getElementById('ui-wait-partner').textContent = dict.waitPartner;
+      document.getElementById('ui-join-input-label').textContent = dict.joinInputLabel;
+      document.getElementById('input-join-code').placeholder = dict.joinInputPlaceholder;
+      document.getElementById('ui-btn-confirm-join').textContent = dict.btnConfirmJoin;
+      document.getElementById('ui-btn-tutorial').textContent = dict.btnTutorial;
+      document.getElementById('ui-btn-rules').textContent = dict.btnRules;
+
+      document.getElementById('opp-role').textContent = dict.roleDealer;
+      document.getElementById('my-role').textContent = dict.rolePlayer;
+      document.getElementById('ui-opp-wear-lbl').textContent = dict.wearLabel;
+      document.getElementById('ui-my-wear-lbl').textContent = dict.wearLabel;
+      document.getElementById('ui-select-bet-lbl').textContent = dict.selectBet;
+      document.getElementById('ui-current-bet-lbl').textContent = dict.currentBet;
+      document.getElementById('ui-btn-deal').textContent = dict.btnDeal;
+      document.getElementById('ui-btn-hit').textContent = dict.btnHit;
+      document.getElementById('ui-btn-stand').textContent = dict.btnStand;
+      document.getElementById('ui-btn-double').textContent = dict.btnDouble;
+
+      document.getElementById('ui-flirt-kiss').textContent = dict.flirtKiss;
+      document.getElementById('ui-flirt-spicy').textContent = dict.flirtSpicy;
+      document.getElementById('ui-flirt-surrender').textContent = dict.flirtSurrender;
+      document.getElementById('ui-btn-heartbeat').textContent = dict.btnHeartbeat;
+
+      // Update Modals
+      document.getElementById('tut-modal-title').textContent = dict.tutTitle;
+      document.getElementById('btn-close-tutorial').textContent = dict.tutClose;
+      document.getElementById('tut-content-area').innerHTML = getTutorialHTML(lang);
+
+      document.getElementById('rules-modal-title').textContent = dict.rulesTitle;
+      document.getElementById('btn-close-rules').textContent = dict.rulesClose;
+      document.getElementById('rules-content-area').innerHTML = getRulesHTML(lang);
+
+      // Default nickname fallback if untouched
+      if (document.getElementById('player-nickname').value === '達令' && lang === 'es') {
+        document.getElementById('player-nickname').value = 'Cariño';
+        state.myNickname = 'Cariño';
+      } else if (document.getElementById('player-nickname').value === 'Cariño' && lang === 'zh') {
+        document.getElementById('player-nickname').value = '達令';
+        state.myNickname = '達令';
+      }
+
+      updateUI();
     }
 
     /* Deck creation and shuffling */
@@ -1473,7 +1854,6 @@
           deck.push({ suit: s, value: v });
         }
       }
-      // Shuffle
       for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -1481,12 +1861,10 @@
       return deck;
     }
 
-    // Card Value calculation in Blackjack
     function calculateHandScore(hand, hideFirst = false) {
       if (hand.length === 0) return 0;
       let score = 0;
       let aces = 0;
-
       const evalCards = hideFirst ? hand.slice(1) : hand;
 
       for (const card of evalCards) {
@@ -1504,11 +1882,9 @@
         score -= 10;
         aces -= 1;
       }
-
       return score;
     }
 
-    // Render playing card HTML
     function renderCardHTML(card, facedown = false) {
       if (facedown) {
         return `<div class="poker-card facedown"></div>`;
@@ -1530,18 +1906,19 @@
     }
 
     function updateUI() {
+      const dict = I18N[state.lang];
       myNameEl.textContent = state.myNickname;
       myAvatarEl.textContent = state.myAvatar;
       myChipsEl.textContent = state.myChips;
 
-      oppNameEl.textContent = state.oppNickname;
+      oppNameEl.textContent = state.oppNickname || dict.oppNicknameDefault;
       oppAvatarEl.textContent = state.oppAvatar;
       oppChipsEl.textContent = state.oppChips;
 
       // Render cards
       myCardsEl.innerHTML = state.myHand.map(c => renderCardHTML(c)).join('');
       const myScore = calculateHandScore(state.myHand);
-      myScoreEl.textContent = `${myScore} 點`;
+      myScoreEl.textContent = state.lang === 'es' ? `${myScore} pts` : `${myScore} 點`;
 
       // Opponent cards
       const hideOppCard = (state.gamePhase === 'player_turn' && !state.dealerIsMe);
@@ -1552,11 +1929,11 @@
         }
         oppCardsEl.innerHTML = oppHtml;
         const visibleScore = calculateHandScore(state.oppHand, true);
-        oppScoreEl.textContent = `${visibleScore} + ? 點`;
+        oppScoreEl.textContent = state.lang === 'es' ? `${visibleScore} + ? pts` : `${visibleScore} + ? 點`;
       } else {
         oppCardsEl.innerHTML = state.oppHand.map(c => renderCardHTML(c)).join('');
         const oppScore = calculateHandScore(state.oppHand);
-        oppScoreEl.textContent = state.oppHand.length > 0 ? `${oppScore} 點` : '0 點';
+        oppScoreEl.textContent = state.oppHand.length > 0 ? (state.lang === 'es' ? `${oppScore} pts` : `${oppScore} 點`) : (state.lang === 'es' ? '0 pts' : '0 點');
       }
 
       // Wardrobe layers
@@ -1594,6 +1971,7 @@
 
     /* Start a new round */
     function startRound() {
+      const dict = I18N[state.lang];
       sound.playChip();
       state.deck = createDeck();
       state.myHand = [];
@@ -1601,21 +1979,18 @@
       state.gamePhase = 'player_turn';
       state.roundTurn = 'my';
 
-      // Deduct chips
       state.myChips = Math.max(0, state.myChips - state.currentBet);
       state.oppChips = Math.max(0, state.oppChips - state.currentBet);
 
-      // Deal 2 cards each
       state.myHand.push(state.deck.pop());
       sound.playCard();
       state.oppHand.push(state.deck.pop());
       state.myHand.push(state.deck.pop());
       state.oppHand.push(state.deck.pop());
 
-      gameBanner.textContent = "🎲 你的回合：請選擇【要牌】或【停牌】";
+      gameBanner.textContent = dict.bannerMyTurn;
       updateUI();
 
-      // Check natural Blackjack
       const myScore = calculateHandScore(state.myHand);
       const oppScore = calculateHandScore(state.oppHand);
 
@@ -1634,9 +2009,9 @@
       }
     }
 
-    // Player action: HIT
     function actionHit() {
       if (state.roundTurn !== 'my' || state.gamePhase !== 'player_turn') return;
+      const dict = I18N[state.lang];
       sound.playCard();
       const card = state.deck.pop();
       state.myHand.push(card);
@@ -1645,10 +2020,8 @@
 
       if (score > 21) {
         sound.playBust();
-        gameBanner.textContent = "💥 爆牌了！總分超過 21 點！";
-        setTimeout(() => {
-          resolveShowdown();
-        }, 1000);
+        gameBanner.textContent = dict.bannerBust;
+        setTimeout(() => { resolveShowdown(); }, 1000);
       } else if (score === 21) {
         actionStand();
       }
@@ -1662,12 +2035,12 @@
       }
     }
 
-    // Player action: STAND
     function actionStand() {
       if (state.roundTurn !== 'my') return;
+      const dict = I18N[state.lang];
       sound.playChip();
       state.roundTurn = 'opp';
-      gameBanner.textContent = `⏳ 等待 ${state.oppNickname} 行動中...`;
+      gameBanner.textContent = dict.bannerOppTurn.replace('%name%', state.oppNickname);
       updateUI();
 
       if (state.isRemote && state.conn) {
@@ -1676,12 +2049,10 @@
           myHand: state.myHand
         });
       } else {
-        // Solo/Local AI or pass-and-play turn simulation
         setTimeout(simulateOpponentTurn, 800);
       }
     }
 
-    // Player action: DOUBLE
     function actionDouble() {
       if (state.myHand.length !== 2) return;
       state.currentBet *= 2;
@@ -1692,7 +2063,6 @@
       }
     }
 
-    // Opponent AI simulation for solo/testing
     function simulateOpponentTurn() {
       let score = calculateHandScore(state.oppHand);
       while (score < 17 && state.deck.length > 0) {
@@ -1703,64 +2073,55 @@
       setTimeout(resolveShowdown, 600);
     }
 
-    // Showdown resolution
     function resolveShowdown() {
+      const dict = I18N[state.lang];
       state.gamePhase = 'round_end';
       const myScore = calculateHandScore(state.myHand);
       const oppScore = calculateHandScore(state.oppHand);
       updateUI();
 
-      let result = ''; // 'my_win', 'opp_win', 'tie'
+      let result = '';
       let isBlackjack = (myScore === 21 && state.myHand.length === 2);
       let isOppBlackjack = (oppScore === 21 && state.oppHand.length === 2);
 
       if (myScore > 21 && oppScore > 21) {
         result = 'tie';
-        gameBanner.textContent = "雙方均爆牌！平局重來～";
+        gameBanner.textContent = dict.bannerBothBust;
       } else if (myScore > 21) {
         result = 'opp_win';
-        gameBanner.textContent = `💥 你爆牌了！本局 ${state.oppNickname} 獲勝！`;
+        gameBanner.textContent = dict.bannerBust;
       } else if (oppScore > 21) {
         result = 'my_win';
-        gameBanner.textContent = `🎉 ${state.oppNickname} 爆牌了！你贏得本局！`;
+        gameBanner.textContent = dict.bannerWin.replace('%my%', myScore).replace('%opp%', oppScore);
       } else if (isBlackjack && !isOppBlackjack) {
         result = 'my_win';
-        gameBanner.textContent = "👑 BLACKJACK 王牌爆擊！贏得絕對特權！";
+        gameBanner.textContent = dict.bannerBlackjackWin;
       } else if (isOppBlackjack && !isBlackjack) {
         result = 'opp_win';
-        gameBanner.textContent = `👑 ${state.oppNickname} 達成 BLACKJACK 王牌爆擊！`;
+        gameBanner.textContent = dict.bannerBlackjackLose.replace('%name%', state.oppNickname);
       } else if (myScore > oppScore) {
         result = 'my_win';
-        gameBanner.textContent = `🎉 你以 ${myScore} 點擊敗 ${oppScore} 點獲勝！`;
+        gameBanner.textContent = dict.bannerWin.replace('%my%', myScore).replace('%opp%', oppScore);
       } else if (oppScore > myScore) {
         result = 'opp_win';
-        gameBanner.textContent = `💔 ${state.oppNickname} 以 ${oppScore} 點勝過你的 ${myScore} 點！`;
+        gameBanner.textContent = dict.bannerLose.replace('%name%', state.oppNickname).replace('%opp%', oppScore).replace('%my%', myScore);
       } else {
         result = 'tie';
-        gameBanner.textContent = `平手！雙方都是 ${myScore} 點！`;
+        gameBanner.textContent = dict.bannerTie.replace('%score%', myScore);
       }
 
       if (result === 'my_win') {
         sound.playWin();
-        if (typeof confetti === 'function') {
-          confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
-        }
+        if (typeof confetti === 'function') confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
         state.myChips += state.currentBet * 2;
         updateUI();
-        // Opponent receives dare
-        setTimeout(() => {
-          triggerDareModal(false, isBlackjack);
-        }, 1200);
+        setTimeout(() => { triggerDareModal(false, isBlackjack); }, 1200);
       } else if (result === 'opp_win') {
         sound.playBust();
         state.oppChips += state.currentBet * 2;
         updateUI();
-        // I receive dare
-        setTimeout(() => {
-          triggerDareModal(true, isOppBlackjack);
-        }, 1200);
+        setTimeout(() => { triggerDareModal(true, isOppBlackjack); }, 1200);
       } else {
-        // Refund
         state.myChips += state.currentBet;
         state.oppChips += state.currentBet;
         updateUI();
@@ -1769,14 +2130,17 @@
     }
 
     function resetForNextBet() {
+      const dict = I18N[state.lang];
       state.gamePhase = 'betting';
-      gameBanner.textContent = "✨ 調整籌碼下注，點擊確認開始下一局 ✨";
+      gameBanner.textContent = dict.bannerResetNext;
       updateUI();
     }
 
-    // Trigger spicy dare modal
     function triggerDareModal(iAmLoser, isClimax) {
       sound.playHeartbeat();
+      const dict = I18N[state.lang];
+      const daresPool = DARES[state.lang];
+
       const modal = document.getElementById('dare-modal');
       const badge = document.getElementById('modal-badge');
       const title = document.getElementById('modal-title');
@@ -1786,69 +2150,76 @@
 
       let dareObj;
       if (isClimax) {
-        dareObj = SPICY_DARES[SPICY_DARES.length - 1]; // Blackjack climax
+        dareObj = daresPool[daresPool.length - 1];
       } else {
-        const pool = SPICY_DARES.slice(0, SPICY_DARES.length - 1);
+        const pool = daresPool.slice(0, daresPool.length - 1);
         dareObj = pool[Math.floor(Math.random() * pool.length)];
       }
 
       badge.textContent = dareObj.badge;
       if (iAmLoser) {
-        title.textContent = "💔 你輸了！請接受甜蜜懲罰";
+        title.textContent = dict.dareModalTitleLose;
         content.textContent = dareObj.text;
-        btnComplete.textContent = "💋 我認輸！心服口服執行完畢";
+        btnComplete.textContent = dict.btnCompleteDareLose;
+        btnStrip.textContent = dict.btnStripAlternative;
         btnStrip.style.display = 'block';
       } else {
-        title.textContent = `👑 你贏了！${state.oppNickname} 必須執行`;
-        content.textContent = `對方抽中的懲罰是：\n「${dareObj.text}」\n請盯著鏡頭或身旁確認執行！`;
-        btnComplete.textContent = "✨ 對方已執行完畢，進入下一局";
+        title.textContent = dict.dareModalTitleWin.replace('%name%', state.oppNickname);
+        content.textContent = dict.dareModalContentWinPrefix + dareObj.text + dict.dareModalContentWinSuffix;
+        btnComplete.textContent = dict.btnCompleteDareWin;
         btnStrip.style.display = 'none';
       }
 
       modal.style.display = 'flex';
     }
 
-    // Strip one layer
     function stripOneLayer(isMe) {
       sound.playChip();
+      const dict = I18N[state.lang];
       const wearList = isMe ? state.myWear : state.oppWear;
       const idx = wearList.findIndex(w => w === true);
       if (idx !== -1) {
         wearList[idx] = false;
-        showToast(isMe ? "🫣 你褪下了一件裝備！" : `🔥 ${state.oppNickname} 褪下了一件裝備！`);
+        showToast(isMe ? dict.toastStripMe : dict.toastStripOpp.replace('%name%', state.oppNickname));
       } else {
-        showToast("⚠️ 已經沒有裝備可以褪下了！今晚完全臣服！");
+        showToast(dict.toastNoWear);
       }
       updateUI();
 
       if (state.isRemote && state.conn) {
         state.conn.send({
           type: 'STRIP_UPDATE',
-          isMe: !isMe, // Opponent's perspective
+          isMe: !isMe,
           myWear: state.myWear,
           oppWear: state.oppWear
         });
       }
     }
 
-    // Send heartbeat interaction
     function sendHeartbeat() {
+      const dict = I18N[state.lang];
       sound.playHeartbeat();
       document.body.classList.add('screen-shake');
       setTimeout(() => document.body.classList.remove('screen-shake'), 600);
-      showToast("💓 已向另一半發射心跳電波！");
+      showToast(dict.toastHeartbeatSent);
 
       if (state.isRemote && state.conn) {
         state.conn.send({ type: 'HEARTBEAT' });
       }
     }
 
-    // Send flirt quick-action
     function sendFlirt(type) {
+      const dict = I18N[state.lang];
       let msg = "";
-      if (type === 'kiss') msg = "💋 隔空吻了你一口～！";
-      else if (type === 'spicy') msg = "🔥 忍不住說：你今晚真的好迷人...";
-      else if (type === 'surrender') msg = "🥺 楚楚可憐地看著你：這局饒了我吧～";
+      if (state.lang === 'es') {
+        if (type === 'kiss') msg = "💋 ¡Te mando un beso ardiente a distancia!";
+        else if (type === 'spicy') msg = "🔥 ¡Te ves completamente irresistible hoy!";
+        else if (type === 'surrender') msg = "🥺 ¡Por favor, ten piedad de mí esta ronda!";
+      } else {
+        if (type === 'kiss') msg = "💋 隔空吻了你一口～！";
+        else if (type === 'spicy') msg = "🔥 忍不住說：你今晚真的好迷人...";
+        else if (type === 'surrender') msg = "🥺 楚楚可憐地看著你：這局饒了我吧～";
+      }
 
       sound.playWin();
       showToast(msg);
@@ -1859,20 +2230,18 @@
     }
 
     /* =====================================================================
-       5. PEERJS REMOTE CONNECTION LOGIC
+       5. PEERJS REMOTE CONNECTION
        ===================================================================== */
     function initPeer(asHost = false) {
+      const dict = I18N[state.lang];
       netBadge.style.display = 'inline-flex';
       netDot.className = 'status-dot waiting';
-      netStatusText.textContent = '連線雲端中...';
+      netStatusText.textContent = dict.statusConnecting;
 
-      // Generate a short 6-digit random ID
       const randomCode = Math.floor(100000 + Math.random() * 900000).toString();
       const peerId = 'mn21-' + randomCode;
 
-      state.peer = new Peer(peerId, {
-        debug: 1
-      });
+      state.peer = new Peer(peerId, { debug: 1 });
 
       state.peer.on('open', (id) => {
         state.myId = id;
@@ -1882,11 +2251,10 @@
           displayRoomCode.textContent = randomCode;
           roomShareBox.style.display = 'block';
           roomJoinBox.style.display = 'none';
-          netStatusText.textContent = `房號：${randomCode} (等待加入)`;
+          netStatusText.textContent = dict.statusRoomWaiting.replace('%code%', randomCode);
         }
       });
 
-      // Host receives incoming connection from girlfriend/partner
       state.peer.on('connection', (conn) => {
         state.conn = conn;
         setupConnectionEvents(conn);
@@ -1894,25 +2262,23 @@
 
       state.peer.on('error', (err) => {
         console.error("Peer error:", err);
-        showToast("⚠️ 網路配對提示: " + err.type);
       });
     }
 
     function setupConnectionEvents(conn) {
+      const dict = I18N[state.lang];
       conn.on('open', () => {
         state.isRemote = true;
         netDot.className = 'status-dot connected';
-        netStatusText.textContent = '❤️ 兩人已連線';
-        showToast("💖 愛巢連線成功！心跳已同步！");
+        netStatusText.textContent = dict.statusConnected;
+        showToast(dict.statusConnected);
 
-        // Send profile info
         conn.send({
           type: 'PROFILE_SYNC',
           nickname: state.myNickname,
           avatar: state.myAvatar
         });
 
-        // Switch to game table
         lobbyPanel.style.display = 'none';
         gameTable.style.display = 'flex';
         updateUI();
@@ -1924,12 +2290,13 @@
 
       conn.on('close', () => {
         netDot.className = 'status-dot';
-        netStatusText.textContent = '💔 對方已斷線';
-        showToast("💔 對方離開了房間");
+        netStatusText.textContent = dict.statusDisconnected;
+        showToast(dict.statusDisconnected);
       });
     }
 
     function handleRemoteMessage(data) {
+      const dict = I18N[state.lang];
       switch (data.type) {
         case 'PROFILE_SYNC':
           state.oppNickname = data.nickname;
@@ -1939,13 +2306,12 @@
         case 'START_ROUND':
           sound.playChip();
           state.deck = data.deck;
-          // Invert perspective: host's myHand is guest's oppHand
           state.oppHand = data.myHand;
           state.myHand = data.oppHand;
           state.currentBet = data.bet;
           state.gamePhase = 'player_turn';
           state.roundTurn = 'opp';
-          gameBanner.textContent = `🎲 ${state.oppNickname} 正在行動中...`;
+          gameBanner.textContent = dict.bannerOppTurn.replace('%name%', state.oppNickname);
           updateUI();
           break;
         case 'ACTION_HIT':
@@ -1957,7 +2323,7 @@
           sound.playChip();
           state.oppHand = data.myHand;
           state.roundTurn = 'my';
-          gameBanner.textContent = "🎲 輪到你的回合了！請選擇【要牌】或【停牌】";
+          gameBanner.textContent = dict.bannerMyTurn;
           updateUI();
           break;
         case 'STRIP_UPDATE':
@@ -1969,7 +2335,7 @@
           sound.playHeartbeat();
           document.body.classList.add('screen-shake');
           setTimeout(() => document.body.classList.remove('screen-shake'), 600);
-          showToast(`💓 感受到了！${state.oppNickname} 向你傳送了劇烈心跳！`);
+          showToast(dict.toastHeartbeatRecv.replace('%name%', state.oppNickname));
           break;
         case 'FLIRT':
           sound.playWin();
@@ -1983,19 +2349,38 @@
        ===================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
 
-      // Audio Toggle
-      document.getElementById('audio-toggle-btn').addEventListener('click', () => {
-        const on = sound.toggle();
-        document.getElementById('audio-icon').textContent = on ? '🔊' : '🔇';
-        showToast(on ? "🔊 音效已開啟" : "🔇 已靜音");
+      // Language Switcher Events
+      document.querySelectorAll('.lang-opt').forEach(opt => {
+        opt.addEventListener('click', () => {
+          sound.playChip();
+          setLanguage(opt.dataset.lang);
+        });
+      });
+
+      // Tutorial Toggle
+      document.getElementById('tutorial-toggle-btn').addEventListener('click', () => {
+        sound.playChip();
+        tutorialModal.style.display = 'flex';
+      });
+      document.getElementById('btn-close-tutorial').addEventListener('click', () => {
+        tutorialModal.style.display = 'none';
       });
 
       // Rules Toggle
       document.getElementById('rules-toggle-btn').addEventListener('click', () => {
+        sound.playChip();
         rulesModal.style.display = 'flex';
       });
       document.getElementById('btn-close-rules').addEventListener('click', () => {
         rulesModal.style.display = 'none';
+      });
+
+      // Audio Toggle
+      document.getElementById('audio-toggle-btn').addEventListener('click', () => {
+        const on = sound.toggle();
+        const dict = I18N[state.lang];
+        document.getElementById('audio-icon').textContent = on ? '🔊' : '🔇';
+        showToast(on ? dict.toastAudioOn : dict.toastAudioOff);
       });
 
       // Avatar selection
@@ -2009,9 +2394,9 @@
         });
       });
 
-      // Nickname change
+      // Nickname input
       document.getElementById('player-nickname').addEventListener('input', (e) => {
-        state.myNickname = e.target.value.trim() || '達令';
+        state.myNickname = e.target.value.trim() || I18N[state.lang].nicknameDefault;
       });
 
       // Create Room (Host)
@@ -2028,14 +2413,12 @@
       // Join Confirm
       document.getElementById('btn-confirm-join').addEventListener('click', () => {
         const code = document.getElementById('input-join-code').value.trim();
-        if (!code || code.length < 5) {
-          showToast("⚠️ 請輸入有效的房間代碼");
-          return;
-        }
+        if (!code || code.length < 5) return;
 
+        const dict = I18N[state.lang];
         netBadge.style.display = 'inline-flex';
         netDot.className = 'status-dot waiting';
-        netStatusText.textContent = '尋找房間中...';
+        netStatusText.textContent = dict.statusConnecting;
 
         state.peer = new Peer({ debug: 1 });
         state.peer.on('open', () => {
@@ -2050,28 +2433,28 @@
       document.getElementById('btn-copy-link').addEventListener('click', () => {
         const url = new URL(window.location.href);
         url.searchParams.set('room', state.roomCode);
+        url.searchParams.set('lang', state.lang);
         navigator.clipboard.writeText(url.toString()).then(() => {
-          showToast("📋 專屬甜蜜連結已複製！快發給女友吧！");
+          showToast(I18N[state.lang].toastCopied);
         }).catch(() => {
-          showToast(`請直接給她代碼：${state.roomCode}`);
+          showToast(`Code: ${state.roomCode}`);
         });
       });
 
-      // Solo / Pass-and-play Mode
+      // Solo Mode
       document.getElementById('btn-solo-mode').addEventListener('click', () => {
         state.isRemote = false;
-        state.oppNickname = '小妖精';
+        state.oppNickname = state.lang === 'es' ? 'Mi Amor' : '小妖精';
         state.oppAvatar = '💋';
-        netStatusText.textContent = '💖 兩人同機模式';
+        netStatusText.textContent = I18N[state.lang].statusSolo;
         netDot.className = 'status-dot connected';
         lobbyPanel.style.display = 'none';
         gameTable.style.display = 'flex';
         updateUI();
       });
 
-      // Chip Betting buttons
-      const chipBtns = document.querySelectorAll('.chip-btn');
-      chipBtns.forEach(btn => {
+      // Betting Chips
+      document.querySelectorAll('.chip-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           sound.playChip();
           state.currentBet = parseInt(btn.dataset.bet);
@@ -2079,13 +2462,13 @@
         });
       });
 
-      // Game Action Buttons
+      // Action Buttons
       btnDeal.addEventListener('click', startRound);
       btnHit.addEventListener('click', actionHit);
       btnStand.addEventListener('click', actionStand);
       btnDouble.addEventListener('click', actionDouble);
 
-      // Heartbeat & Flirt buttons
+      // Heartbeat & Flirts
       document.getElementById('btn-send-heartbeat').addEventListener('click', sendHeartbeat);
       document.querySelectorAll('.flirt-pill').forEach(btn => {
         btn.addEventListener('click', () => sendFlirt(btn.dataset.flirt));
@@ -2104,13 +2487,21 @@
         resetForNextBet();
       });
 
-      // Auto-join from URL parameter ?room=XYZ
+      // Initial Language Check from URL (e.g. ?lang=es)
       const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam === 'es') {
+        setLanguage('es');
+      } else {
+        setLanguage('zh');
+      }
+
+      // Room Param check
       const roomParam = urlParams.get('room');
       if (roomParam) {
         document.getElementById('input-join-code').value = roomParam;
         roomJoinBox.style.display = 'block';
-        showToast("✨ 已自動帶入邀請代碼，點擊進入房間！");
+        showToast(state.lang === 'es' ? "✨ ¡Código de sala detectado! Pulsa entrar." : "✨ 已自動帶入邀請代碼，點擊進入房間！");
       }
     });
   </script>
