@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Midnight Velvet 21・午夜魅影情趣 21 點</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Serif+TC:wght@400;600;900&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- PeerJS for zero-server WebRTC P2P remote multiplayer -->
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <!-- Canvas Confetti for celebratory climax -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0a0512;
+      --bg-velvet: #1b0a20;
+      --burgundy: #590d22;
+      --crimson: #a4133c;
+      --scarlet: #ff2a6d;
+      --gold-primary: #d4af37;
+      --gold-light: #f5e08b;
+      --gold-glow: rgba(212, 175, 55, 0.45);
+      --rose-glow: rgba(255, 42, 109, 0.4);
+      --glass-bg: rgba(26, 12, 33, 0.72);
+      --glass-border: rgba(212, 175, 55, 0.28);
+      --text-main: #f9f5f0;
+      --text-muted: #b8a6be;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(89, 13, 34, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(45, 10, 60, 0.5) 0%, transparent 50%),
+        radial-gradient(circle at 15% 75%, rgba(164, 19, 60, 0.3) 0%, transparent 45%),
+        linear-gradient(180deg, #0d0617 0%, #06020c 100%);
+      color: var(--text-main);
+      font-family: 'Montserrat', 'Noto Serif TC', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Ambient particles & lighting canvas */
+    #ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Luxury Header */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(20, 8, 28, 0.85) 0%, rgba(20, 8, 28, 0) 100%);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      font-size: 24px;
+      filter: drop-shadow(0 0 8px var(--scarlet));
+      animation: pulse-heart 2s infinite ease-in-out;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 19px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 20%, var(--gold-light) 60%, var(--gold-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      color: var(--gold-light);
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .icon-btn:hover, .icon-btn:active {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 12px var(--gold-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Connection Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #888;
+    }
+    .status-dot.connected {
+      background: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+    }
+    .status-dot.waiting {
+      background: #ffd700;
+      box-shadow: 0 0 8px #ffd700;
+      animation: blink 1s infinite alternate;
+    }
+
+    /* Main Container */
+    main {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* LOBBY / CONNECTION OVERLAY */
+    #lobby-panel {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(164, 19, 60, 0.2);
+      backdrop-filter: blur(16px);
+      max-width: 540px;
+      margin: 20px auto;
+      width: 100%;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .lobby-subtitle {
+      color: var(--gold-light);
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .lobby-title {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      color: #fff;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #fff, #ffd1dc, var(--scarlet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lobby-desc {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .player-setup {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    .input-label {
+      font-size: 13px;
+      color: var(--gold-light);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .custom-input {
+      width: 100%;
+      background: rgba(10, 4, 18, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .custom-input:focus {
+      border-color: var(--scarlet);
+      box-shadow: 0 0 15px var(--rose-glow);
+    }
+
+    .avatar-selector {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+    .avatar-chip {
+      font-size: 24px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .avatar-chip.active, .avatar-chip:hover {
+      background: rgba(255, 42, 109, 0.25);
+      border-color: var(--scarlet);
+      transform: scale(1.15);
+    }
+
+    .lobby-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .lobby-btn {
+      background: linear-gradient(135deg, var(--burgundy) 0%, var(--crimson) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(164, 19, 60, 0.35);
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lobby-btn:hover {
+      background: linear-gradient(135deg, var(--crimson) 0%, var(--scarlet) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px var(--rose-glow);
+    }
+
+    .lobby-btn.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--gold-light);
+      box-shadow: none;
+    }
+    .lobby-btn.secondary:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .solo-btn {
+      grid-column: span 2;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(212, 175, 55, 0.3);
+      color: var(--text-muted);
+      font-size: 13px;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .solo-btn:hover {
+      color: #fff;
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    /* SHARE ROOM POPUP / MODAL */
+    .room-share-box {
+      background: rgba(10, 4, 18, 0.9);
+      border: 1px solid var(--gold-primary);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 16px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .room-code-display {
+      font-family: 'Cinzel', monospace;
+      font-size: 26px;
+      color: var(--gold-light);
+      letter-spacing: 5px;
+      font-weight: 700;
+      margin: 8px 0;
+      text-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* CASINO GAME TABLE */
+    #game-table {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+      animation: fadeIn 0.5s ease;
+    }
+
+    /* Player Arena Cards */
+    .table-section {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .table-section.active-turn {
+      border-color: var(--scarlet);
+      box-shadow: 0 0 25px var(--rose-glow), 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+    }
+
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .player-avatar {
+      font-size: 28px;
+      filter: drop-shadow(0 0 8px rgba(255, 42, 109, 0.4));
+    }
+    .player-name {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .player-role-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    /* Wardrobe / Clothing Layers Status */
+    .wardrobe-tracker {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 42, 109, 0.2);
+    }
+    .clothing-icon {
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .clothing-icon.stripped {
+      opacity: 0.25;
+      filter: grayscale(1);
+      transform: scale(0.85);
+      text-decoration: line-through;
+    }
+
+    /* Score and Chips Display */
+    .player-stats {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 15px;
+      font-family: 'Cinzel', serif;
+    }
+    .stat-hand-score {
+      background: linear-gradient(135deg, var(--burgundy), var(--crimson));
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(164, 19, 60, 0.3);
+    }
+
+    /* CARDS DISPLAY CONTAINER */
+    .cards-row {
+      display: flex;
+      gap: 12px;
+      min-height: 125px;
+      align-items: center;
+      overflow-x: auto;
+      padding: 8px 4px;
+      perspective: 1000px;
+    }
+
+    /* LUXURY PLAYING CARD */
+    .poker-card {
+      width: 82px;
+      height: 118px;
+      background: linear-gradient(145deg, #ffffff 0%, #f0f0f5 100%);
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 6px 8px;
+      font-weight: 900;
+      font-family: 'Cinzel', serif;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: dealCard 0.45s ease-out forwards;
+      flex-shrink: 0;
+    }
+    .poker-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 14px 25px rgba(0, 0, 0, 0.5), 0 0 12px var(--gold-glow);
+    }
+
+    .poker-card.red {
+      color: #b7094c;
+    }
+    .poker-card.black {
+      color: #1a0928;
+    }
+
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1;
+      font-size: 16px;
+    }
+    .card-suit-sm {
+      font-size: 14px;
+      margin-top: 2px;
+    }
+    .card-center {
+      align-self: center;
+      font-size: 28px;
+    }
+    .card-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1;
+      transform: rotate(180deg);
+      font-size: 16px;
+    }
+
+    /* HIDDEN CARD (Facedown Velvet Gold) */
+    .poker-card.facedown {
+      background: radial-gradient(circle at 50% 50%, #4a0d24 0%, #1a0410 100%);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .poker-card.facedown::after {
+      content: '♠ 21 ♥';
+      color: var(--gold-light);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    /* ACTION CONTROLS CENTER */
+    .controls-panel {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .message-banner {
+      text-align: center;
+      font-size: 15px;
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 1px;
+      min-height: 24px;
+      text-shadow: 0 0 10px var(--gold-glow);
+      animation: pulseText 2.5s infinite ease-in-out;
+    }
+
+    .betting-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .chip-btn {
+      background: radial-gradient(circle at 35% 35%, #fff 0%, #d4af37 60%, #8c711a 100%);
+      border: 2px dashed rgba(255, 255, 255, 0.6);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      color: #2b1800;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255,255,255,0.8);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .chip-btn:hover {
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 8px 20px var(--gold-glow), inset 0 2px 6px #fff;
+    }
+    .chip-btn.red-chip {
+      background: radial-gradient(circle at 35% 35%, #ff8fab 0%, #c9184a 60%, #590d22 100%);
+      color: #fff;
+    }
+    .chip-btn.black-chip {
+      background: radial-gradient(circle at 35% 35%, #5a4868 0%, #221233 60%, #0d0414 100%);
+      color: var(--gold-light);
+      border-color: var(--gold-primary);
+    }
+
+    .action-buttons-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .game-action-btn {
+      flex: 1;
+      min-width: 120px;
+      max-width: 180px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .game-action-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .btn-hit {
+      background: linear-gradient(135deg, #107040 0%, #1ab565 100%);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(26, 181, 101, 0.35);
+    }
+    .btn-hit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(26, 181, 101, 0.55);
+    }
+
+    .btn-stand {
+      background: linear-gradient(135deg, #7b1129 0%, #ba183e 100%);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(186, 24, 62, 0.35);
+    }
+    .btn-stand:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 42, 109, 0.5);
+    }
+
+    .btn-double {
+      background: linear-gradient(135deg, #9a7213 0%, #d4af37 100%);
+      color: #1d0f00;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+    .btn-double:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--gold-glow);
+    }
+
+    /* REMOTE FLIRT & HEARTBEAT BAR */
+    .intimacy-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(18, 6, 26, 0.7);
+      border: 1px solid rgba(255, 42, 109, 0.25);
+      border-radius: 14px;
+      padding: 10px 16px;
+      margin-top: 4px;
+    }
+
+    .flirt-quick-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .flirt-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffd1dc;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .flirt-pill:hover {
+      background: rgba(255, 42, 109, 0.25);
+      border-color: var(--scarlet);
+      transform: scale(1.05);
+    }
+
+    .heartbeat-sync-btn {
+      background: linear-gradient(135deg, #a4133c, #ff2a6d);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 0 15px var(--rose-glow);
+      animation: pulse-heart 2s infinite ease-in-out;
+    }
+    .heartbeat-sync-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* MODAL: SPICY DARE & STRIP CLIMAX */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(8, 2, 14, 0.88);
+      backdrop-filter: blur(14px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .dare-card-modal {
+      background: linear-gradient(145deg, #240a2c 0%, #120317 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: 24px;
+      padding: 32px 24px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 42, 109, 0.4), 0 20px 50px rgba(0,0,0,0.8);
+      position: relative;
+      animation: zoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .dare-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: rgba(255, 42, 109, 0.25);
+      color: #ff8fab;
+      border: 1px solid var(--scarlet);
+    }
+
+    .dare-title {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff, var(--gold-light), var(--gold-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .dare-content {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #fce7f3;
+      margin: 16px 0 26px 0;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      border-left: 3px solid var(--scarlet);
+      font-weight: 500;
+    }
+
+    .dare-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dare-primary-btn {
+      background: linear-gradient(135deg, var(--crimson), var(--scarlet));
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--rose-glow);
+      transition: all 0.2s;
+    }
+    .dare-primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 42, 109, 0.6);
+    }
+
+    .dare-alt-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-muted);
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dare-alt-btn:hover {
+      color: #fff;
+      border-color: var(--gold-primary);
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-notice {
+      position: fixed;
+      top: 75px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 6, 28, 0.92);
+      border: 1px solid var(--scarlet);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      z-index: 200;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px var(--rose-glow);
+      display: none;
+      animation: fadeInDown 0.3s ease;
+      white-space: nowrap;
+    }
+
+    /* ANIMATIONS */
+    @keyframes pulse-heart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    @keyframes blink {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    @keyframes dealCard {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.6) rotate(-10deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translate(-50%, -20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.85; }
+      50% { opacity: 1; text-shadow: 0 0 16px var(--scarlet); }
+    }
+
+    /* Screen Shake when heartbeat sent */
+    .screen-shake {
+      animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(3px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .brand-title { font-size: 16px; }
+      .lobby-grid { grid-template-columns: 1fr; }
+      .solo-btn { grid-column: span 1; }
+      .poker-card { width: 70px; height: 104px; }
+      .cards-row { min-height: 112px; }
+      .card-center { font-size: 22px; }
+      .chip-btn { width: 44px; height: 44px; font-size: 12px; }
+      .game-action-btn { min-width: 90px; padding: 11px 12px; font-size: 13.5px; }
+      .dare-card-modal { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Luxury Particle Background Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Top Navigation / Status Header -->
+  <header>
+    <div class="brand">
+      <span class="brand-icon">💋</span>
+      <span class="brand-title">MIDNIGHT 21</span>
+    </div>
+
+    <div class="header-actions">
+      <div class="status-badge" id="net-badge">
+        <span class="status-dot" id="net-dot"></span>
+        <span id="net-status-text">單機準備中</span>
+      </div>
+      <button class="icon-btn" id="audio-toggle-btn" title="切換音效">
+        <span id="audio-icon">🔊</span>
+      </button>
+      <button class="icon-btn" id="rules-toggle-btn" title="情趣規則">
+        <span>📜 規則</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Floating Toast -->
+  <div id="toast" class="toast-notice"></div>
+
+  <!-- MAIN VIEW -->
+  <main>
+
+    <!-- 1. LOBBY & REMOTE MATCHMAKING PANEL -->
+    <section id="lobby-panel">
+      <p class="lobby-subtitle">Sensual Blackjack For Lovers</p>
+      <h1 class="lobby-title">午夜魅影・情趣 21 點</h1>
+      <p class="lobby-desc">
+        專為情侶設計的微醺博弈遊戲。輸家必須在「褪下一件裝備」與「執行火辣指令」中抉擇。支持遠距離一鍵連線，隨時隨地開啟兩人秘密時光。
+      </p>
+
+      <div class="player-setup">
+        <div>
+          <label class="input-label">你的暱稱 / 稱呼</label>
+          <input type="text" id="player-nickname" class="custom-input" placeholder="例如：國王 / 親愛的 / 壞貓咪" value="達令">
+        </div>
+        <div>
+          <label class="input-label">選擇你的代表符號</label>
+          <div class="avatar-selector" id="avatar-picker">
+            <span class="avatar-chip active" data-avatar="👑">👑</span>
+            <span class="avatar-chip" data-avatar="💋">💋</span>
+            <span class="avatar-chip" data-avatar="🐾">🐾</span>
+            <span class="avatar-chip" data-avatar="🐰">🐰</span>
+            <span class="avatar-chip" data-avatar="😈">😈</span>
+            <span class="avatar-chip" data-avatar="🍷">🍷</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lobby-grid">
+        <button class="lobby-btn" id="btn-create-room">
+          <span style="font-size: 20px;">🏰</span>
+          <span>創建愛巢 (當房主)</span>
+        </button>
+
+        <button class="lobby-btn secondary" id="btn-join-room-prompt">
+          <span style="font-size: 20px;">🗝️</span>
+          <span>輸入代碼加入</span>
+        </button>
+
+        <button class="solo-btn" id="btn-solo-mode">
+          💖 單機同機 / 練習模式 (兩人輪流拿手機)
+        </button>
+      </div>
+
+      <!-- Share Box (When Host Creates Room) -->
+      <div class="room-share-box" id="room-share-box">
+        <p style="color: var(--text-muted); font-size: 13px;">把這組代碼發給女友，或直接複製甜蜜專屬連結：</p>
+        <div class="room-code-display" id="display-room-code">------</div>
+        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 10px;">
+          <button class="lobby-btn" id="btn-copy-link" style="padding: 10px 16px; font-size: 13px; flex-direction: row;">
+            <span>📋 複製專屬甜蜜連結</span>
+          </button>
+        </div>
+        <p style="font-size: 12px; color: var(--gold-light); margin-top: 12px; animation: blink 1.2s infinite alternate;">
+          ⏳ 正在等待另一半連線進房...
+        </p>
+      </div>
+
+      <!-- Join Input Box -->
+      <div class="room-share-box" id="room-join-box">
+        <label class="input-label" style="margin-bottom: 6px;">請輸入男友/女友給你的 6 碼房間代碼：</label>
+        <input type="text" id="input-join-code" class="custom-input" placeholder="例如：882341" style="text-align: center; font-size: 20px; letter-spacing: 4px;">
+        <button class="lobby-btn" id="btn-confirm-join" style="width: 100%; margin-top: 12px; padding: 12px;">
+          進入甜蜜房間 💋
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. GAME TABLE (CASINO & INTIMACY ARENA) -->
+    <section id="game-table">
+
+      <!-- OPPONENT (OPPONENT / DEALER) SECTION -->
+      <div class="table-section" id="opponent-section">
+        <div class="player-header">
+          <div class="player-info">
+            <span class="player-avatar" id="opp-avatar">💋</span>
+            <div>
+              <span class="player-name" id="opp-name">對手 / 達令</span>
+              <span class="player-role-badge" id="opp-role">莊家</span>
+            </div>
+          </div>
+
+          <div class="wardrobe-tracker" title="對手的裝備狀態">
+            <span style="color: var(--text-muted); margin-right: 4px;">裝備:</span>
+            <span class="clothing-icon" id="opp-wear-1" title="飾品/外套">🧥</span>
+            <span class="clothing-icon" id="opp-wear-2" title="上衣">👚</span>
+            <span class="clothing-icon" id="opp-wear-3" title="下著">👖</span>
+            <span class="clothing-icon" id="opp-wear-4" title="貼身私密">👙</span>
+          </div>
+
+          <div class="player-stats">
+            <div class="stat-chip">
+              <span>🪙</span>
+              <span id="opp-chips">1000</span>
+            </div>
+            <div class="stat-hand-score" id="opp-score">
+              ? 點
+            </div>
+          </div>
+        </div>
+
+        <!-- Opponent Cards Row -->
+        <div class="cards-row" id="opp-cards">
+          <!-- Cards rendered by JS -->
+        </div>
+      </div>
+
+      <!-- MIDDLE: CONTROLS & BETTING & BANNER -->
+      <div class="controls-panel">
+        <div class="message-banner" id="game-banner">
+          ✨ 請下注心跳籌碼，或點擊開始發牌 ✨
+        </div>
+
+        <!-- Betting Controls (Only visible before deal) -->
+        <div class="betting-row" id="betting-controls">
+          <span style="font-size: 13px; color: var(--gold-light);">選擇下注籌碼：</span>
+          <button class="chip-btn" data-bet="50">50</button>
+          <button class="chip-btn red-chip" data-bet="100">100</button>
+          <button class="chip-btn black-chip" data-bet="250">250</button>
+          <button class="chip-btn red-chip" data-bet="500">500</button>
+          <div style="font-size: 14px; color: #fff; margin-left: 8px;">
+            當前下注：<span id="current-bet-display" style="color: var(--gold-light); font-weight: 700; font-size: 16px;">100</span>
+          </div>
+        </div>
+
+        <!-- In-game Action Buttons -->
+        <div class="action-buttons-row" id="action-buttons">
+          <button class="game-action-btn" id="btn-deal" style="background: linear-gradient(135deg, #a4133c, #ff2a6d); color: #fff;">
+            🎲 確認下注發牌
+          </button>
+          <button class="game-action-btn btn-hit" id="btn-hit" disabled>
+            ➕ 要牌 (Hit)
+          </button>
+          <button class="game-action-btn btn-stand" id="btn-stand" disabled>
+            ✋ 停牌 (Stand)
+          </button>
+          <button class="game-action-btn btn-double" id="btn-double" disabled>
+            ⚡ 加倍 (Double)
+          </button>
+        </div>
+
+        <!-- Flirt & Remote Heartbeat Bar -->
+        <div class="intimacy-bar">
+          <div class="flirt-quick-btns">
+            <button class="flirt-pill" data-flirt="kiss">💋 隔空親親</button>
+            <button class="flirt-pill" data-flirt="spicy">🔥 你好迷人</button>
+            <button class="flirt-pill" data-flirt="surrender">🥺 饒了我吧</button>
+          </div>
+
+          <button class="heartbeat-sync-btn" id="btn-send-heartbeat" title="點擊向對方發射真實心跳振動">
+            <span>💓 傳送心跳</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MY PLAYER SECTION -->
+      <div class="table-section" id="my-section">
+        <div class="player-header">
+          <div class="player-info">
+            <span class="player-avatar" id="my-avatar">👑</span>
+            <div>
+              <span class="player-name" id="my-name">我</span>
+              <span class="player-role-badge" id="my-role">閒家</span>
+            </div>
+          </div>
+
+          <div class="wardrobe-tracker" title="我的裝備狀態">
+            <span style="color: var(--text-muted); margin-right: 4px;">裝備:</span>
+            <span class="clothing-icon" id="my-wear-1" title="飾品/外套">🧥</span>
+            <span class="clothing-icon" id="my-wear-2" title="上衣">👚</span>
+            <span class="clothing-icon" id="my-wear-3" title="下著">👖</span>
+            <span class="clothing-icon" id="my-wear-4" title="貼身私密">👙</span>
+          </div>
+
+          <div class="player-stats">
+            <div class="stat-chip">
+              <span>🪙</span>
+              <span id="my-chips">1000</span>
+            </div>
+            <div class="stat-hand-score" id="my-score">
+              0 點
+            </div>
+          </div>
+        </div>
+
+        <!-- My Cards Row -->
+        <div class="cards-row" id="my-cards">
+          <!-- Cards rendered by JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 3. MODAL: SPICY DARE / STRIP PUNISHMENT -->
+  <div class="modal-overlay" id="dare-modal">
+    <div class="dare-card-modal">
+      <span class="dare-badge" id="modal-badge">🔥 午夜心跳懲罰</span>
+      <h2 class="dare-title" id="modal-title">命運的降臨</h2>
+      <div class="dare-content" id="modal-content">
+        輸家必須隔著鏡頭或在身旁，深情撫摸對方的鎖骨 20 秒，並在耳邊輕聲說一句：「今晚聽你的」。
+      </div>
+      <div class="dare-actions">
+        <button class="dare-primary-btn" id="btn-complete-dare">
+          💋 我認輸！心服口服執行完畢
+        </button>
+        <button class="dare-alt-btn" id="btn-strip-alternative">
+          🫣 太害羞了！改為褪去一件裝備代替
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. MODAL: GAME RULES & INTIMACY GUIDE -->
+  <div class="modal-overlay" id="rules-modal">
+    <div class="dare-card-modal" style="max-width: 520px; text-align: left;">
+      <span class="dare-badge" style="background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border-color: var(--gold-primary);">
+        RULEBOOK
+      </span>
+      <h2 class="dare-title" style="text-align: center; margin-bottom: 12px;">午夜 21 點・情趣規則</h2>
+      <div style="font-size: 13.5px; line-height: 1.8; color: var(--text-muted); max-height: 340px; overflow-y: auto; padding-right: 8px;">
+        <p><strong style="color: var(--gold-light);">1. 基本博弈：</strong>雙方比誰的牌面總和最接近 21 點且不爆牌（J, Q, K 為 10 點，A 可算 1 或 11 點）。</p>
+        <p><strong style="color: var(--gold-light);">2. 黑傑克爆擊 (Blackjack)：</strong>起始兩張直接 21 點觸發王牌爆擊！贏家享有「絕對命令權」，可要求輸家做任何想做的事。</p>
+        <p><strong style="color: var(--gold-light);">3. 褪裳與懲罰機制：</strong>每局落敗者，或是籌碼輸光時，必須在「執行火辣指令」或「褪下一件裝備（外衣 -> 上著 -> 下著 -> 貼身）」中二選一！</p>
+        <p><strong style="color: var(--gold-light);">4. 遠端心跳互動：</strong>即使相隔兩地，點擊「💓 傳送心跳」按鈕，對方的畫面會劇烈震動並響起真實心跳聲；搭配視訊或通話體驗最佳！</p>
+      </div>
+      <div style="margin-top: 18px; text-align: center;">
+        <button class="dare-primary-btn" id="btn-close-rules" style="width: 100%;">
+          我明白了，開始浪漫博弈
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    /* =====================================================================
+       1. LUXURY PROCEDURAL AUDIO SYNTHESIZER (Web Audio API - No Missing Files)
+       ===================================================================== */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+      toggle() {
+        this.enabled = !this.enabled;
+        return this.enabled;
+      }
+      // Deal card swoosh
+      playCard() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(150, now + 0.12);
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.13);
+      }
+      // Chip click / stack
+      playChip() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1800, now);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.06);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      }
+      // Heartbeat thud
+      playHeartbeat() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const playThud = (t, freq) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, t);
+          osc.frequency.exponentialRampToValueAtTime(30, t + 0.18);
+          gain.gain.setValueAtTime(0.5, t);
+          gain.gain.exponentialRampToValueAtTime(0.01, t + 0.18);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.19);
+        };
+        playThud(now, 85);
+        playThud(now + 0.22, 70);
+      }
+      // Seductive Champagne Chime
+      playWin() {
+        if (!this.enabled) return;
+        this.init();
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C E G C
+        notes.forEach((freq, idx) => {
+          const t = this.ctx.currentTime + idx * 0.09;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, t);
+          gain.gain.setValueAtTime(0.2, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.46);
+        });
+      }
+      // Bust / Lose buzzer
+      playBust() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(60, now + 0.35);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.36);
+      }
+    }
+
+    const sound = new SoundEngine();
+
+    /* =====================================================================
+       2. AMBIENT PARTICLES (Velvet Champagne Bokeh)
+       ===================================================================== */
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = -(Math.random() * 0.4 + 0.1);
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.alpha = Math.random() * 0.5 + 0.2;
+        this.color = Math.random() > 0.4 ? '212, 175, 55' : '255, 42, 109';
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        if (this.y < 0) this.reset();
+      }
+      draw() {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = `rgba(${this.color}, 0.6)`;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateAmbient() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateAmbient);
+    }
+    animateAmbient();
+
+    /* =====================================================================
+       3. SPICY DARE DATABASE (Categorized Romantic & Erotic Challenges)
+       ===================================================================== */
+    const SPICY_DARES = [
+      {
+        badge: "💋 微糖挑逗",
+        text: "用鼻尖輕蹭對方的臉頰與耳垂 15 秒，感受彼此的呼吸頻率。"
+      },
+      {
+        badge: "💋 微糖挑逗",
+        text: "深情注視對方的眼睛 20 秒，期間雙方都不准說話或笑場，先移開視線的人要被親一口。"
+      },
+      {
+        badge: "💋 微糖挑逗",
+        text: "用最溫柔、沙啞且撩人的氣音，在視訊電話中或耳邊輕喊對方的名字 3 次。"
+      },
+      {
+        badge: "🔥 半熟心跳",
+        text: "隔著衣服輕輕撫摸對方的腰部、鎖骨或大腿內側 30 秒，動作要極致緩慢。"
+      },
+      {
+        badge: "🔥 半熟心跳",
+        text: "親吻對方的鎖骨或頸側，留下微溫的印記，並輕咬一下耳垂。"
+      },
+      {
+        badge: "🔥 半熟心跳",
+        text: "解開自己或對方的一顆鈕扣，或者拉下一點肩帶，保持這個姿勢進行下一局。"
+      },
+      {
+        badge: "🔥 半熟心跳",
+        text: "任由贏家指定吻一處非臉部的部位（例如：手腕內側、掌心、肩膀）。"
+      },
+      {
+        badge: "🌙 午夜狂歡",
+        text: "閉上雙眼或戴上眼罩，任由對方用手指與嘴唇探索撫摸 1 分鐘，期間只能發出呼吸聲。"
+      },
+      {
+        badge: "🌙 午夜狂歡",
+        text: "坐在對方腿上或貼近鏡頭，進行一場長達 30 秒的深情熱吻。"
+      },
+      {
+        badge: "🌙 午夜狂歡",
+        text: "褪去一件貼身衣物，或者讓對方替你褪下一件裝備。"
+      },
+      {
+        badge: "🌙 午夜狂歡",
+        text: "在對方耳畔說出一個你心底最害羞、一直很想跟對方嘗試的私密幻想。"
+      },
+      {
+        badge: "👑 黑傑克王牌特權",
+        text: "【絕對命令權】贏家享有完全主導權！贏家可直接口頭指定輸家做任何一件事，輸家無條件順從。"
+      }
+    ];
+
+    /* =====================================================================
+       4. GAME STATE & NETWORKING (PeerJS WebRTC)
+       ===================================================================== */
+    const SUITS = ['♠', '♥', '♦', '♣'];
+    const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+    const state = {
+      isRemote: false,
+      isHost: false,
+      peer: null,
+      conn: null,
+      myId: '',
+      roomCode: '',
+      
+      // Players profile
+      myNickname: '達令',
+      myAvatar: '👑',
+      oppNickname: '另一半',
+      oppAvatar: '💋',
+
+      // Chips & Wardrobe (4 layers: 0=coat, 1=top, 2=bottom, 3=underwear)
+      myChips: 1000,
+      oppChips: 1000,
+      currentBet: 100,
+      myWear: [true, true, true, true],
+      oppWear: [true, true, true, true],
+
+      // Deck & Hands
+      deck: [],
+      myHand: [],
+      oppHand: [],
+      gamePhase: 'betting', // 'betting', 'player_turn', 'opp_turn', 'round_end'
+      roundTurn: 'my',      // 'my' or 'opp'
+      dealerIsMe: false,    // toggles each round in PvP
+    };
+
+    // DOM Elements
+    const netBadge = document.getElementById('net-badge');
+    const netDot = document.getElementById('net-dot');
+    const netStatusText = document.getElementById('net-status-text');
+    const toast = document.getElementById('toast');
+
+    const lobbyPanel = document.getElementById('lobby-panel');
+    const gameTable = document.getElementById('game-table');
+    const roomShareBox = document.getElementById('room-share-box');
+    const roomJoinBox = document.getElementById('room-join-box');
+    const displayRoomCode = document.getElementById('display-room-code');
+
+    const myNameEl = document.getElementById('my-name');
+    const myAvatarEl = document.getElementById('my-avatar');
+    const myChipsEl = document.getElementById('my-chips');
+    const myScoreEl = document.getElementById('my-score');
+    const myCardsEl = document.getElementById('my-cards');
+
+    const oppNameEl = document.getElementById('opp-name');
+    const oppAvatarEl = document.getElementById('opp-avatar');
+    const oppChipsEl = document.getElementById('opp-chips');
+    const oppScoreEl = document.getElementById('opp-score');
+    const oppCardsEl = document.getElementById('opp-cards');
+
+    const gameBanner = document.getElementById('game-banner');
+    const bettingControls = document.getElementById('betting-controls');
+    const currentBetDisplay = document.getElementById('current-bet-display');
+    const btnDeal = document.getElementById('btn-deal');
+    const btnHit = document.getElementById('btn-hit');
+    const btnStand = document.getElementById('btn-stand');
+    const btnDouble = document.getElementById('btn-double');
+
+    const dareModal = document.getElementById('dare-modal');
+    const rulesModal = document.getElementById('rules-modal');
+
+    // Show Toast
+    function showToast(msg, duration = 3000) {
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, duration);
+    }
+
+    /* Deck creation and shuffling */
+    function createDeck() {
+      const deck = [];
+      for (const s of SUITS) {
+        for (const v of VALUES) {
+          deck.push({ suit: s, value: v });
+        }
+      }
+      // Shuffle
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+      return deck;
+    }
+
+    // Card Value calculation in Blackjack
+    function calculateHandScore(hand, hideFirst = false) {
+      if (hand.length === 0) return 0;
+      let score = 0;
+      let aces = 0;
+
+      const evalCards = hideFirst ? hand.slice(1) : hand;
+
+      for (const card of evalCards) {
+        if (card.value === 'A') {
+          aces += 1;
+          score += 11;
+        } else if (['K', 'Q', 'J', '10'].includes(card.value)) {
+          score += 10;
+        } else {
+          score += parseInt(card.value);
+        }
+      }
+
+      while (score > 21 && aces > 0) {
+        score -= 10;
+        aces -= 1;
+      }
+
+      return score;
+    }
+
+    // Render playing card HTML
+    function renderCardHTML(card, facedown = false) {
+      if (facedown) {
+        return `<div class="poker-card facedown"></div>`;
+      }
+      const isRed = (card.suit === '♥' || card.suit === '♦');
+      return `
+        <div class="poker-card ${isRed ? 'red' : 'black'}">
+          <div class="card-top">
+            <span>${card.value}</span>
+            <span class="card-suit-sm">${card.suit}</span>
+          </div>
+          <div class="card-center">${card.suit}</div>
+          <div class="card-bottom">
+            <span>${card.value}</span>
+            <span class="card-suit-sm">${card.suit}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateUI() {
+      myNameEl.textContent = state.myNickname;
+      myAvatarEl.textContent = state.myAvatar;
+      myChipsEl.textContent = state.myChips;
+
+      oppNameEl.textContent = state.oppNickname;
+      oppAvatarEl.textContent = state.oppAvatar;
+      oppChipsEl.textContent = state.oppChips;
+
+      // Render cards
+      myCardsEl.innerHTML = state.myHand.map(c => renderCardHTML(c)).join('');
+      const myScore = calculateHandScore(state.myHand);
+      myScoreEl.textContent = `${myScore} 點`;
+
+      // Opponent cards
+      const hideOppCard = (state.gamePhase === 'player_turn' && !state.dealerIsMe);
+      if (hideOppCard && state.oppHand.length > 0) {
+        let oppHtml = renderCardHTML(state.oppHand[0], true);
+        for (let i = 1; i < state.oppHand.length; i++) {
+          oppHtml += renderCardHTML(state.oppHand[i]);
+        }
+        oppCardsEl.innerHTML = oppHtml;
+        const visibleScore = calculateHandScore(state.oppHand, true);
+        oppScoreEl.textContent = `${visibleScore} + ? 點`;
+      } else {
+        oppCardsEl.innerHTML = state.oppHand.map(c => renderCardHTML(c)).join('');
+        const oppScore = calculateHandScore(state.oppHand);
+        oppScoreEl.textContent = state.oppHand.length > 0 ? `${oppScore} 點` : '0 點';
+      }
+
+      // Wardrobe layers
+      for (let i = 1; i <= 4; i++) {
+        const myWearIcon = document.getElementById(`my-wear-${i}`);
+        const oppWearIcon = document.getElementById(`opp-wear-${i}`);
+        if (!state.myWear[i - 1]) myWearIcon.classList.add('stripped');
+        else myWearIcon.classList.remove('stripped');
+
+        if (!state.oppWear[i - 1]) oppWearIcon.classList.add('stripped');
+        else oppWearIcon.classList.remove('stripped');
+      }
+
+      // Button states
+      if (state.gamePhase === 'betting') {
+        bettingControls.style.display = 'flex';
+        btnDeal.disabled = false;
+        btnHit.disabled = true;
+        btnStand.disabled = true;
+        btnDouble.disabled = true;
+      } else if (state.gamePhase === 'player_turn') {
+        bettingControls.style.display = 'none';
+        btnDeal.disabled = true;
+        const isMyTurn = (state.roundTurn === 'my');
+        btnHit.disabled = !isMyTurn;
+        btnStand.disabled = !isMyTurn;
+        btnDouble.disabled = !isMyTurn || state.myHand.length !== 2;
+      } else {
+        btnHit.disabled = true;
+        btnStand.disabled = true;
+        btnDouble.disabled = true;
+        btnDeal.disabled = true;
+      }
+    }
+
+    /* Start a new round */
+    function startRound() {
+      sound.playChip();
+      state.deck = createDeck();
+      state.myHand = [];
+      state.oppHand = [];
+      state.gamePhase = 'player_turn';
+      state.roundTurn = 'my';
+
+      // Deduct chips
+      state.myChips = Math.max(0, state.myChips - state.currentBet);
+      state.oppChips = Math.max(0, state.oppChips - state.currentBet);
+
+      // Deal 2 cards each
+      state.myHand.push(state.deck.pop());
+      sound.playCard();
+      state.oppHand.push(state.deck.pop());
+      state.myHand.push(state.deck.pop());
+      state.oppHand.push(state.deck.pop());
+
+      gameBanner.textContent = "🎲 你的回合：請選擇【要牌】或【停牌】";
+      updateUI();
+
+      // Check natural Blackjack
+      const myScore = calculateHandScore(state.myHand);
+      const oppScore = calculateHandScore(state.oppHand);
+
+      if (myScore === 21 || oppScore === 21) {
+        setTimeout(resolveShowdown, 800);
+      }
+
+      if (state.isRemote && state.conn) {
+        state.conn.send({
+          type: 'START_ROUND',
+          deck: state.deck,
+          myHand: state.myHand,
+          oppHand: state.oppHand,
+          bet: state.currentBet
+        });
+      }
+    }
+
+    // Player action: HIT
+    function actionHit() {
+      if (state.roundTurn !== 'my' || state.gamePhase !== 'player_turn') return;
+      sound.playCard();
+      const card = state.deck.pop();
+      state.myHand.push(card);
+      const score = calculateHandScore(state.myHand);
+      updateUI();
+
+      if (score > 21) {
+        sound.playBust();
+        gameBanner.textContent = "💥 爆牌了！總分超過 21 點！";
+        setTimeout(() => {
+          resolveShowdown();
+        }, 1000);
+      } else if (score === 21) {
+        actionStand();
+      }
+
+      if (state.isRemote && state.conn) {
+        state.conn.send({
+          type: 'ACTION_HIT',
+          card: card,
+          myHand: state.myHand
+        });
+      }
+    }
+
+    // Player action: STAND
+    function actionStand() {
+      if (state.roundTurn !== 'my') return;
+      sound.playChip();
+      state.roundTurn = 'opp';
+      gameBanner.textContent = `⏳ 等待 ${state.oppNickname} 行動中...`;
+      updateUI();
+
+      if (state.isRemote && state.conn) {
+        state.conn.send({
+          type: 'ACTION_STAND',
+          myHand: state.myHand
+        });
+      } else {
+        // Solo/Local AI or pass-and-play turn simulation
+        setTimeout(simulateOpponentTurn, 800);
+      }
+    }
+
+    // Player action: DOUBLE
+    function actionDouble() {
+      if (state.myHand.length !== 2) return;
+      state.currentBet *= 2;
+      currentBetDisplay.textContent = state.currentBet;
+      actionHit();
+      if (calculateHandScore(state.myHand) <= 21) {
+        actionStand();
+      }
+    }
+
+    // Opponent AI simulation for solo/testing
+    function simulateOpponentTurn() {
+      let score = calculateHandScore(state.oppHand);
+      while (score < 17 && state.deck.length > 0) {
+        sound.playCard();
+        state.oppHand.push(state.deck.pop());
+        score = calculateHandScore(state.oppHand);
+      }
+      setTimeout(resolveShowdown, 600);
+    }
+
+    // Showdown resolution
+    function resolveShowdown() {
+      state.gamePhase = 'round_end';
+      const myScore = calculateHandScore(state.myHand);
+      const oppScore = calculateHandScore(state.oppHand);
+      updateUI();
+
+      let result = ''; // 'my_win', 'opp_win', 'tie'
+      let isBlackjack = (myScore === 21 && state.myHand.length === 2);
+      let isOppBlackjack = (oppScore === 21 && state.oppHand.length === 2);
+
+      if (myScore > 21 && oppScore > 21) {
+        result = 'tie';
+        gameBanner.textContent = "雙方均爆牌！平局重來～";
+      } else if (myScore > 21) {
+        result = 'opp_win';
+        gameBanner.textContent = `💥 你爆牌了！本局 ${state.oppNickname} 獲勝！`;
+      } else if (oppScore > 21) {
+        result = 'my_win';
+        gameBanner.textContent = `🎉 ${state.oppNickname} 爆牌了！你贏得本局！`;
+      } else if (isBlackjack && !isOppBlackjack) {
+        result = 'my_win';
+        gameBanner.textContent = "👑 BLACKJACK 王牌爆擊！贏得絕對特權！";
+      } else if (isOppBlackjack && !isBlackjack) {
+        result = 'opp_win';
+        gameBanner.textContent = `👑 ${state.oppNickname} 達成 BLACKJACK 王牌爆擊！`;
+      } else if (myScore > oppScore) {
+        result = 'my_win';
+        gameBanner.textContent = `🎉 你以 ${myScore} 點擊敗 ${oppScore} 點獲勝！`;
+      } else if (oppScore > myScore) {
+        result = 'opp_win';
+        gameBanner.textContent = `💔 ${state.oppNickname} 以 ${oppScore} 點勝過你的 ${myScore} 點！`;
+      } else {
+        result = 'tie';
+        gameBanner.textContent = `平手！雙方都是 ${myScore} 點！`;
+      }
+
+      if (result === 'my_win') {
+        sound.playWin();
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+        }
+        state.myChips += state.currentBet * 2;
+        updateUI();
+        // Opponent receives dare
+        setTimeout(() => {
+          triggerDareModal(false, isBlackjack);
+        }, 1200);
+      } else if (result === 'opp_win') {
+        sound.playBust();
+        state.oppChips += state.currentBet * 2;
+        updateUI();
+        // I receive dare
+        setTimeout(() => {
+          triggerDareModal(true, isOppBlackjack);
+        }, 1200);
+      } else {
+        // Refund
+        state.myChips += state.currentBet;
+        state.oppChips += state.currentBet;
+        updateUI();
+        setTimeout(resetForNextBet, 2500);
+      }
+    }
+
+    function resetForNextBet() {
+      state.gamePhase = 'betting';
+      gameBanner.textContent = "✨ 調整籌碼下注，點擊確認開始下一局 ✨";
+      updateUI();
+    }
+
+    // Trigger spicy dare modal
+    function triggerDareModal(iAmLoser, isClimax) {
+      sound.playHeartbeat();
+      const modal = document.getElementById('dare-modal');
+      const badge = document.getElementById('modal-badge');
+      const title = document.getElementById('modal-title');
+      const content = document.getElementById('modal-content');
+      const btnComplete = document.getElementById('btn-complete-dare');
+      const btnStrip = document.getElementById('btn-strip-alternative');
+
+      let dareObj;
+      if (isClimax) {
+        dareObj = SPICY_DARES[SPICY_DARES.length - 1]; // Blackjack climax
+      } else {
+        const pool = SPICY_DARES.slice(0, SPICY_DARES.length - 1);
+        dareObj = pool[Math.floor(Math.random() * pool.length)];
+      }
+
+      badge.textContent = dareObj.badge;
+      if (iAmLoser) {
+        title.textContent = "💔 你輸了！請接受甜蜜懲罰";
+        content.textContent = dareObj.text;
+        btnComplete.textContent = "💋 我認輸！心服口服執行完畢";
+        btnStrip.style.display = 'block';
+      } else {
+        title.textContent = `👑 你贏了！${state.oppNickname} 必須執行`;
+        content.textContent = `對方抽中的懲罰是：\n「${dareObj.text}」\n請盯著鏡頭或身旁確認執行！`;
+        btnComplete.textContent = "✨ 對方已執行完畢，進入下一局";
+        btnStrip.style.display = 'none';
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    // Strip one layer
+    function stripOneLayer(isMe) {
+      sound.playChip();
+      const wearList = isMe ? state.myWear : state.oppWear;
+      const idx = wearList.findIndex(w => w === true);
+      if (idx !== -1) {
+        wearList[idx] = false;
+        showToast(isMe ? "🫣 你褪下了一件裝備！" : `🔥 ${state.oppNickname} 褪下了一件裝備！`);
+      } else {
+        showToast("⚠️ 已經沒有裝備可以褪下了！今晚完全臣服！");
+      }
+      updateUI();
+
+      if (state.isRemote && state.conn) {
+        state.conn.send({
+          type: 'STRIP_UPDATE',
+          isMe: !isMe, // Opponent's perspective
+          myWear: state.myWear,
+          oppWear: state.oppWear
+        });
+      }
+    }
+
+    // Send heartbeat interaction
+    function sendHeartbeat() {
+      sound.playHeartbeat();
+      document.body.classList.add('screen-shake');
+      setTimeout(() => document.body.classList.remove('screen-shake'), 600);
+      showToast("💓 已向另一半發射心跳電波！");
+
+      if (state.isRemote && state.conn) {
+        state.conn.send({ type: 'HEARTBEAT' });
+      }
+    }
+
+    // Send flirt quick-action
+    function sendFlirt(type) {
+      let msg = "";
+      if (type === 'kiss') msg = "💋 隔空吻了你一口～！";
+      else if (type === 'spicy') msg = "🔥 忍不住說：你今晚真的好迷人...";
+      else if (type === 'surrender') msg = "🥺 楚楚可憐地看著你：這局饒了我吧～";
+
+      sound.playWin();
+      showToast(msg);
+
+      if (state.isRemote && state.conn) {
+        state.conn.send({ type: 'FLIRT', text: msg });
+      }
+    }
+
+    /* =====================================================================
+       5. PEERJS REMOTE CONNECTION LOGIC
+       ===================================================================== */
+    function initPeer(asHost = false) {
+      netBadge.style.display = 'inline-flex';
+      netDot.className = 'status-dot waiting';
+      netStatusText.textContent = '連線雲端中...';
+
+      // Generate a short 6-digit random ID
+      const randomCode = Math.floor(100000 + Math.random() * 900000).toString();
+      const peerId = 'mn21-' + randomCode;
+
+      state.peer = new Peer(peerId, {
+        debug: 1
+      });
+
+      state.peer.on('open', (id) => {
+        state.myId = id;
+        state.roomCode = randomCode;
+        if (asHost) {
+          state.isHost = true;
+          displayRoomCode.textContent = randomCode;
+          roomShareBox.style.display = 'block';
+          roomJoinBox.style.display = 'none';
+          netStatusText.textContent = `房號：${randomCode} (等待加入)`;
+        }
+      });
+
+      // Host receives incoming connection from girlfriend/partner
+      state.peer.on('connection', (conn) => {
+        state.conn = conn;
+        setupConnectionEvents(conn);
+      });
+
+      state.peer.on('error', (err) => {
+        console.error("Peer error:", err);
+        showToast("⚠️ 網路配對提示: " + err.type);
+      });
+    }
+
+    function setupConnectionEvents(conn) {
+      conn.on('open', () => {
+        state.isRemote = true;
+        netDot.className = 'status-dot connected';
+        netStatusText.textContent = '❤️ 兩人已連線';
+        showToast("💖 愛巢連線成功！心跳已同步！");
+
+        // Send profile info
+        conn.send({
+          type: 'PROFILE_SYNC',
+          nickname: state.myNickname,
+          avatar: state.myAvatar
+        });
+
+        // Switch to game table
+        lobbyPanel.style.display = 'none';
+        gameTable.style.display = 'flex';
+        updateUI();
+      });
+
+      conn.on('data', (data) => {
+        handleRemoteMessage(data);
+      });
+
+      conn.on('close', () => {
+        netDot.className = 'status-dot';
+        netStatusText.textContent = '💔 對方已斷線';
+        showToast("💔 對方離開了房間");
+      });
+    }
+
+    function handleRemoteMessage(data) {
+      switch (data.type) {
+        case 'PROFILE_SYNC':
+          state.oppNickname = data.nickname;
+          state.oppAvatar = data.avatar;
+          updateUI();
+          break;
+        case 'START_ROUND':
+          sound.playChip();
+          state.deck = data.deck;
+          // Invert perspective: host's myHand is guest's oppHand
+          state.oppHand = data.myHand;
+          state.myHand = data.oppHand;
+          state.currentBet = data.bet;
+          state.gamePhase = 'player_turn';
+          state.roundTurn = 'opp';
+          gameBanner.textContent = `🎲 ${state.oppNickname} 正在行動中...`;
+          updateUI();
+          break;
+        case 'ACTION_HIT':
+          sound.playCard();
+          state.oppHand = data.myHand;
+          updateUI();
+          break;
+        case 'ACTION_STAND':
+          sound.playChip();
+          state.oppHand = data.myHand;
+          state.roundTurn = 'my';
+          gameBanner.textContent = "🎲 輪到你的回合了！請選擇【要牌】或【停牌】";
+          updateUI();
+          break;
+        case 'STRIP_UPDATE':
+          state.myWear = data.oppWear;
+          state.oppWear = data.myWear;
+          updateUI();
+          break;
+        case 'HEARTBEAT':
+          sound.playHeartbeat();
+          document.body.classList.add('screen-shake');
+          setTimeout(() => document.body.classList.remove('screen-shake'), 600);
+          showToast(`💓 感受到了！${state.oppNickname} 向你傳送了劇烈心跳！`);
+          break;
+        case 'FLIRT':
+          sound.playWin();
+          showToast(data.text);
+          break;
+      }
+    }
+
+    /* =====================================================================
+       6. UI EVENT LISTENERS
+       ===================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Audio Toggle
+      document.getElementById('audio-toggle-btn').addEventListener('click', () => {
+        const on = sound.toggle();
+        document.getElementById('audio-icon').textContent = on ? '🔊' : '🔇';
+        showToast(on ? "🔊 音效已開啟" : "🔇 已靜音");
+      });
+
+      // Rules Toggle
+      document.getElementById('rules-toggle-btn').addEventListener('click', () => {
+        rulesModal.style.display = 'flex';
+      });
+      document.getElementById('btn-close-rules').addEventListener('click', () => {
+        rulesModal.style.display = 'none';
+      });
+
+      // Avatar selection
+      const avatarChips = document.querySelectorAll('.avatar-chip');
+      avatarChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          avatarChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          state.myAvatar = chip.dataset.avatar;
+          sound.playChip();
+        });
+      });
+
+      // Nickname change
+      document.getElementById('player-nickname').addEventListener('input', (e) => {
+        state.myNickname = e.target.value.trim() || '達令';
+      });
+
+      // Create Room (Host)
+      document.getElementById('btn-create-room').addEventListener('click', () => {
+        initPeer(true);
+      });
+
+      // Join Room Prompt
+      document.getElementById('btn-join-room-prompt').addEventListener('click', () => {
+        roomJoinBox.style.display = 'block';
+        roomShareBox.style.display = 'none';
+      });
+
+      // Join Confirm
+      document.getElementById('btn-confirm-join').addEventListener('click', () => {
+        const code = document.getElementById('input-join-code').value.trim();
+        if (!code || code.length < 5) {
+          showToast("⚠️ 請輸入有效的房間代碼");
+          return;
+        }
+
+        netBadge.style.display = 'inline-flex';
+        netDot.className = 'status-dot waiting';
+        netStatusText.textContent = '尋找房間中...';
+
+        state.peer = new Peer({ debug: 1 });
+        state.peer.on('open', () => {
+          const targetPeerId = 'mn21-' + code;
+          const conn = state.peer.connect(targetPeerId);
+          state.conn = conn;
+          setupConnectionEvents(conn);
+        });
+      });
+
+      // Copy invite link
+      document.getElementById('btn-copy-link').addEventListener('click', () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('room', state.roomCode);
+        navigator.clipboard.writeText(url.toString()).then(() => {
+          showToast("📋 專屬甜蜜連結已複製！快發給女友吧！");
+        }).catch(() => {
+          showToast(`請直接給她代碼：${state.roomCode}`);
+        });
+      });
+
+      // Solo / Pass-and-play Mode
+      document.getElementById('btn-solo-mode').addEventListener('click', () => {
+        state.isRemote = false;
+        state.oppNickname = '小妖精';
+        state.oppAvatar = '💋';
+        netStatusText.textContent = '💖 兩人同機模式';
+        netDot.className = 'status-dot connected';
+        lobbyPanel.style.display = 'none';
+        gameTable.style.display = 'flex';
+        updateUI();
+      });
+
+      // Chip Betting buttons
+      const chipBtns = document.querySelectorAll('.chip-btn');
+      chipBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sound.playChip();
+          state.currentBet = parseInt(btn.dataset.bet);
+          currentBetDisplay.textContent = state.currentBet;
+        });
+      });
+
+      // Game Action Buttons
+      btnDeal.addEventListener('click', startRound);
+      btnHit.addEventListener('click', actionHit);
+      btnStand.addEventListener('click', actionStand);
+      btnDouble.addEventListener('click', actionDouble);
+
+      // Heartbeat & Flirt buttons
+      document.getElementById('btn-send-heartbeat').addEventListener('click', sendHeartbeat);
+      document.querySelectorAll('.flirt-pill').forEach(btn => {
+        btn.addEventListener('click', () => sendFlirt(btn.dataset.flirt));
+      });
+
+      // Dare Modal Buttons
+      document.getElementById('btn-complete-dare').addEventListener('click', () => {
+        dareModal.style.display = 'none';
+        sound.playWin();
+        resetForNextBet();
+      });
+
+      document.getElementById('btn-strip-alternative').addEventListener('click', () => {
+        dareModal.style.display = 'none';
+        stripOneLayer(true);
+        resetForNextBet();
+      });
+
+      // Auto-join from URL parameter ?room=XYZ
+      const urlParams = new URLSearchParams(window.location.search);
+      const roomParam = urlParams.get('room');
+      if (roomParam) {
+        document.getElementById('input-join-code').value = roomParam;
+        roomJoinBox.style.display = 'block';
+        showToast("✨ 已自動帶入邀請代碼，點擊進入房間！");
+      }
+    });
+  </script>
+</body>
+</html>
